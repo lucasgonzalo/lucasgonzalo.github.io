@@ -1,30 +1,71 @@
-body {
-    background-color: #1a1a1a;
-    color: #eaeaea;
+/* Define CSS Variables */
+:root {
+    --background-color: #1a1a1a;
+    --text-color: #eaeaea;
+    --card-background-color: #2a2a2a;
+    --border-color: #1e7e34;
+    --primary-color: #28a745;
 }
 
+/* General Styles */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Header and Footer */
+header, footer {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* Project Cards */
 .project-card {
-    background: #2a2a2a;
-    border: 1px solid #1e7e34;
+    background: var(--card-background-color);
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Skills List */
 .skills-list li {
     display: inline-block;
-    background-color: #3a3a3a;
-    border: 1px solid #1e7e34;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     padding: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
-    color: #eaeaea;
+    color: var(--text-color);
 }
 
 .skills-list i {
     margin-right: 5px;
 }
 
-footer {
-    margin-top: auto;
+/* Work in Progress Section */
+.wip-section {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+.wip-section p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
