@@ -3,8 +3,17 @@
     --background-color: #1a1a1a;
     --text-color: #eaeaea;
     --card-background-color: #2a2a2a;
+
+    /*
     --border-color: #1e7e34;
     --primary-color: #28a745;
+    --secondary-color: #44c562; 
+    */
+    
+    --border-color: #a10d0d; 
+    --primary-color: #ff4c4c; 
+    --secondary-color: #d11a2a; 
+     
 }
 
 /* General Styles */
@@ -56,7 +65,7 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 30vh;
 }
 
 .spinner-border {
@@ -68,4 +77,33 @@ footer {
     margin-top: 10px;
     font-size: 1.2rem;
     font-weight: bold;
+}
+
+
+.text-prime{
+    color: var(--primary-color);
+}
+
+
+.btn-prime {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-prime:hover {
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
 }
