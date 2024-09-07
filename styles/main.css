@@ -107,3 +107,19 @@ footer {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
 }
+
+.glass {
+    background: rgba(255, 255, 255, .1);
+    border-radius: 50px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, .5);
+    backdrop-filter: blur(10px);
+}
+
+.image-background {
+    background-image: url('../images/red-background.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    color: white;
+}
