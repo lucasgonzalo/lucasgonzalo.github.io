@@ -5,14 +5,15 @@
     --card-background-color: #2a2a2a;
 
     /*
-    --border-color: #1e7e34;
-    --primary-color: #28a745;
-    --secondary-color: #44c562; 
+   
+     --border-color: #a10d0d; 
+    --primary-color: #ff4c4c; 
+    --secondary-color: #d11a2a;  
     */
     
-    --border-color: #a10d0d; 
-    --primary-color: #ff4c4c; 
-    --secondary-color: #d11a2a; 
+    --border-color: #1e7e34;
+    --primary-color: #28a745;
+    --secondary-color: #44c562;
      
 }
 
@@ -43,7 +44,7 @@ footer {
 /* Skills List */
 .skills-list li {
     display: inline-block;
-    background-color: var(--card-background-color);
+    background-color: var(--primary-color);
     border: 1px solid var(--border-color);
     border-radius: 5px;
     padding: 10px;
@@ -58,8 +59,8 @@ footer {
 
 /* Work in Progress Section */
 .wip-section {
-    background-color: var(--background-color);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--text-color);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -71,6 +72,7 @@ footer {
 .spinner-border {
     width: 3rem;
     height: 3rem;
+    color: var(--text-color)
 }
 
 .wip-section p {
@@ -110,14 +112,14 @@ footer {
 
 .glass {
     background: rgba(255, 255, 255, .1);
-    border-radius: 50px;
+    border-radius: .5rem;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
     border: 2px solid rgba(255, 255, 255, .5);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
 }
 
 .image-background {
-    background-image: url('../images/red-background.jpg');
+    background-image: url('../images/medialuna.jpg');
     background-size: cover;
     background-position: center;
     border-radius: 8px;
