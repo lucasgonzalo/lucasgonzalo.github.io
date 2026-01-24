@@ -119,7 +119,7 @@ footer {
 }
 
 .image-background {
-    background-image: url('../images/medialuna.jpg');
+    background-image: url('/medialuna.jpg');
     background-size: cover;
     background-position: center;
     border-radius: 8px;
