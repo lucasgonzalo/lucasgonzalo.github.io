@@ -129,8 +129,9 @@ p {
   position: absolute;
   background: var(--monster-green);
   border-radius: 50%;
-  opacity: 0.3;
+  opacity: 0.5;
   animation: float 20s infinite linear;
+  box-shadow: 0 0 10px 2px var(--monster-glow);
 }
 
 @keyframes float {
@@ -139,10 +140,10 @@ p {
     opacity: 0;
   }
   10% {
-    opacity: 0.3;
+    opacity: 0.5;
   }
   90% {
-    opacity: 0.3;
+    opacity: 0.5;
   }
   100% {
     transform: translateY(-100vh) rotate(720deg);
@@ -347,6 +348,117 @@ section {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skill-card .expand-icon {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+  opacity: 0.6;
+}
+
+.skill-card.expanded .expand-icon {
+  transform: rotate(180deg);
+}
+
+.skill-card.expanded {
+  background: var(--glass-bg-hover);
+  border-color: rgba(56, 249, 62, 0.4);
+}
+
+.skill-description {
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.skill-card.expanded .skill-description {
+  max-height: 200px;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  opacity: 1;
+  border-top: 1px solid var(--glass-border);
+}
+
+/* Google Translate Widget - Custom Button */
+.btn-translate-icon {
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-translate-icon i {
+  font-size: 1.3rem;
+  color: var(--monster-green);
+}
+
+.btn-translate-icon:hover i {
+  transform: rotate(20deg);
+  filter: drop-shadow(0 0 10px var(--monster-green));
+}
+
+.translate-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1rem;
+  min-width: 200px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  z-index: 1001;
+}
+
+.translate-dropdown.hidden {
+  display: none;
+}
+
+.btn-close-translate {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-close-translate:hover {
+  color: var(--monster-green);
+}
+
+/* Google Translate Widget Styling */
+#google_translate_element select {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 0.5rem;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#google_translate_element select:hover {
+  border-color: var(--monster-green);
+  box-shadow: 0 0 15px var(--monster-glow);
 }
 
 /* Experience Section */

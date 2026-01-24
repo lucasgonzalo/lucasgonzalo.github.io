@@ -1,6 +1,34 @@
 ---
 import '../styles/main.css';
-const particleCount = 50;
+
+const particles = [
+    // 25 small particles (50%)
+    ...Array.from({ length: 25 }).map(() => ({
+        size: 1 + Math.random(),
+        opacity: 0.3 + Math.random() * 0.1,
+        left: Math.random() * 100,
+        animationDelay: Math.random() * 20,
+        animationDuration: 15 + Math.random() * 10
+    })),
+    
+    // 20 medium particles (40%)
+    ...Array.from({ length: 20 }).map(() => ({
+        size: 2 + Math.random() * 2,
+        opacity: 0.5 + Math.random() * 0.1,
+        left: Math.random() * 100,
+        animationDelay: Math.random() * 20,
+        animationDuration: 15 + Math.random() * 10
+    })),
+    
+    // 5 large particles (10%) - very bright!
+    ...Array.from({ length: 5 }).map(() => ({
+        size: 4 + Math.random() * 4,
+        opacity: 0.7 + Math.random() * 0.1,
+        left: Math.random() * 100,
+        animationDelay: Math.random() * 20,
+        animationDuration: 15 + Math.random() * 10
+    }))
+];
 ---
 
 <!DOCTYPE html>
@@ -26,13 +54,14 @@ const particleCount = 50;
 <body>
     <!-- Particle Background -->
     <div class="particle-container" id="particles">
-        {Array.from({ length: particleCount }).map((_, i) => (
+        {particles.map((particle) => (
             <div class="particle" style={{
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 20}s`,
-                animationDuration: `${15 + Math.random() * 10}s`,
-                width: `${2 + Math.random() * 2}px`,
-                height: `${2 + Math.random() * 2}px`
+                left: `${particle.left}%`,
+                animationDelay: `${particle.animationDelay}s`,
+                animationDuration: `${particle.animationDuration}s`,
+                width: `${particle.size}px`,
+                height: `${particle.size}px`,
+                opacity: particle.opacity
             }}></div>
         ))}
     </div>
@@ -47,6 +76,17 @@ const particleCount = 50;
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <button id="translateToggle" class="btn-translate-icon">
+                            <i class="fas fa-globe"></i>
+                        </button>
+                        <div id="googleTranslateDropdown" class="translate-dropdown hidden">
+                            <div id="google_translate_element"></div>
+                            <button class="btn-close-translate">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -85,43 +125,53 @@ const particleCount = 50;
                 <div class="skills-grid">
                     <div class="skill-card glass">
                         <i class="fab fa-html5"></i>
-                        <span>HTML5</span>
+                        <span>HTML5 <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">The structure and content foundation of web pages. Think of it as the skeleton of a webpage.</div>
                     </div>
                     <div class="skill-card glass">
                         <i class="fab fa-css3-alt"></i>
-                        <span>CSS3</span>
+                        <span>CSS3 <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">The styling and layout system. It controls colors, fonts, spacing, and how elements look on screen.</div>
                     </div>
                     <div class="skill-card glass">
                         <i class="fab fa-js-square"></i>
-                        <span>JavaScript</span>
+                        <span>JavaScript <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">Adds interactivity and dynamic behavior to websites. Makes pages respond to clicks, scrolls, and user actions.</div>
                     </div>
                     <div class="skill-card glass">
                         <i class="fas fa-gem"></i>
-                        <span>Ruby on Rails</span>
+                        <span>Ruby on Rails <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">A powerful framework for building web applications. It provides tools and conventions to create websites quickly and securely.</div>
                     </div>
                     <div class="skill-card glass">
                         <i class="fas fa-database"></i>
-                        <span>PostgreSQL</span>
+                        <span>PostgreSQL <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">A database system that stores and organizes information. Like a digital filing cabinet for your application's data.</div>
                     </div>
                     <div class="skill-card glass">
                         <i class="fas fa-database"></i>
-                        <span>Redis</span>
+                        <span>Redis <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">A fast storage system for temporary data. Helps websites load quickly by keeping frequently used information ready.</div>
                     </div>
                     <div class="skill-card glass">
                         <i class="fab fa-docker"></i>
-                        <span>Docker</span>
+                        <span>Docker <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">Creates consistent environments for running applications. Ensures your software works the same everywhere.</div>
                     </div>
                     <div class="skill-card glass">
                         <i class="fab fa-git"></i>
-                        <span>Git - GitHub - GitLab</span>
+                        <span>Git - GitHub - GitLab <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">Tracks changes to code over time. Allows you to save versions, collaborate, and undo mistakes.</div>
                     </div>
                     <div class="skill-card glass">
                         <i class="fab fa-aws"></i>
-                        <span>Amazon Web Services</span>
+                        <span>Amazon Web Services <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">Cloud computing services. Provides servers, databases, and tools to run applications without owning physical computers.</div>
                     </div>
                     <div class="skill-card glass">
                         <i class="fab fa-google"></i>
-                        <span>Google Cloud</span>
+                        <span>Google Cloud <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">Similar to AWS, provides cloud services and infrastructure for building and running applications.</div>
                     </div>
                 </div>
             </div>
@@ -182,6 +232,19 @@ const particleCount = 50;
     <!-- Bootstrap 5.3.8 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     
+    <!-- Google Translate Widget -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'auto',
+                includedLanguages: 'en,es,fr,de,pt,ja,ko,zh-CN,ru,it',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
     <!-- Smooth Scroll Script -->
     <script is:inline>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -217,6 +280,57 @@ const particleCount = 50;
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
+        });
+
+        // Skill card expand/collapse functionality
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isExpanded = this.classList.contains('expanded');
+                
+                // Close all other cards
+                document.querySelectorAll('.skill-card').forEach(c => {
+                    c.classList.remove('expanded');
+                });
+                
+                // Expand this card if it wasn't expanded
+                if (!isExpanded) {
+                    this.classList.add('expanded');
+                }
+            });
+        });
+
+        // Close skill cards when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.skill-card')) {
+                document.querySelectorAll('.skill-card').forEach(c => {
+                    c.classList.remove('expanded');
+                });
+            }
+        });
+
+        // Google Translate dropdown toggle
+        const translateToggle = document.getElementById('translateToggle');
+        const translateDropdown = document.getElementById('googleTranslateDropdown');
+        const btnCloseTranslate = document.querySelector('.btn-close-translate');
+
+        if (translateToggle && translateDropdown) {
+            translateToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                translateDropdown.classList.toggle('hidden');
+            });
+
+            btnCloseTranslate.addEventListener('click', (e) => {
+                e.stopPropagation();
+                translateDropdown.classList.add('hidden');
+            });
+        }
+
+        // Close translate dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (translateDropdown && !e.target.closest('#translateToggle') && !e.target.closest('#googleTranslateDropdown')) {
+                translateDropdown.classList.add('hidden');
+            }
         });
     </script>
 </body>

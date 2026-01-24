@@ -123,12 +123,23 @@ January 24, 2026
 
 ## New Features
 
-### 1. Particle Background System
-- 50 randomly positioned particles
+### 1. Particle Background System (Updated)
+- 50 randomly positioned particles with **3 sizes** and **variable opacity**
 - CSS-based animation (no JavaScript runtime overhead)
-- Monster green color with 30% opacity
+- Monster green color
 - Smooth floating animation (15-25s duration)
 - Tech-focused, subtle effect
+
+#### Particle Sizes and Distribution:
+- **25 Small Particles** (50%): 1-2px, 30-40% opacity (subtle background texture)
+- **20 Medium Particles** (40%): 2-4px, 50-60% opacity (visible tech feel)
+- **5 Large Particles** (10%): 4-8px, 70-80% opacity (very bright focal points!)
+
+#### Particle Glow Effect:
+- Each particle has a **green glow** using box-shadow
+- Creates a tech-focused, futuristic appearance
+- Glow uses Monster green color with 30% opacity
+- Enhances visual interest without being distracting
 
 ### 2. Scroll Animations
 - Fade-in-up effect on scroll
@@ -147,6 +158,37 @@ January 24, 2026
 - **Tablet**: 2-column grids
 - **Mobile**: Stacked layouts, optimized spacing
 - Breakpoints: 992px and 768px
+
+### 5. Google Translate Widget (Updated - Custom Button)
+- Custom globe icon button in navigation (minimal, clean design)
+- Icon-only, no text label
+- Monster green colored globe icon
+- Click to show/hide Google Translate dropdown
+- Dropdown with glassmorphism styling
+- Close button (X) for easy dismissal
+- Supports 100+ languages including Spanish, French, German, Portuguese, Japanese, Korean, Chinese, Russian, Italian
+- **Browser auto-detection** (`pageLanguage: 'auto'`)
+- Click outside dropdown to close
+- Globe icon rotates 20° on hover with glow effect
+
+### 6. Expandable Technology Cards
+- Each skill card is now interactive
+- Click to expand and see non-technical description
+- Accordion behavior: only one card can be expanded at a time
+- Smooth expand/collapse animation (0.3s ease)
+- Visual indicator: chevron icon rotates on expand
+- Non-technical descriptions for all 10 technologies:
+  - HTML5: Structure and content foundation of web pages
+  - CSS3: Styling and layout system for visual presentation
+  - JavaScript: Adds interactivity and dynamic behavior
+  - Ruby on Rails: Framework for building web applications
+  - PostgreSQL: Database system for storing information
+  - Redis: Fast storage for temporary data
+  - Docker: Creates consistent environments for running applications
+  - Git: Tracks changes to code over time
+  - Amazon Web Services: Cloud computing services
+  - Google Cloud: Cloud services and infrastructure
+- Click outside cards to close expanded description
 
 ---
 
@@ -216,9 +258,35 @@ January 24, 2026
 
 ## Testing Checklist
 
+### Particle System:
+- [x] 25 small particles visible (1-2px)
+- [x] 20 medium particles visible (2-4px)
+- [x] 5 large particles visible (4-8px)
+- [x] Large particles are noticeably brighter (70-80% opacity)
+- [x] Medium particles have moderate brightness (50-60% opacity)
+- [x] Small particles are subtle (30-40% opacity)
+- [x] Particles create depth effect
+- [x] Each particle has green glow effect
+- [x] Glow creates tech-focused appearance
+- [x] Particles stand out against dark background with varying sizes
+
+### Google Translate:
+- [x] Globe icon appears in navigation (icon only)
+- [x] Globe icon is Monster green colored
+- [x] Globe icon rotates 20° on hover
+- [x] Globe icon has glow effect on hover
+- [x] Clicking globe icon shows dropdown
+- [x] Google Translate dropdown has glassmorphism styling
+- [x] Close button (X) appears in dropdown
+- [x] Clicking close button hides dropdown
+- [x] Clicking outside dropdown closes it
+- [x] Browser language is auto-detected
+- [x] Language dropdown shows browser language as default
+- [x] Translating to Spanish works (or any language)
+
+### Other Features:
 - [x] Build successfully without errors
 - [x] All sections render correctly
-- [x] Particle animation works smoothly
 - [x] Glassmorphism effects display properly
 - [x] Hover effects function correctly
 - [x] Responsive design on all breakpoints
@@ -228,6 +296,14 @@ January 24, 2026
 - [x] Accessibility: keyboard navigation works
 - [x] Performance: fast load times
 - [x] Cross-browser compatibility
+- [x] Skill cards show expand indicator (chevron)
+- [x] Clicking a card expands it with animation
+- [x] Only one card can be expanded at a time (accordion)
+- [x] Clicking expanded card collapses it
+- [x] Clicking outside cards closes expanded description
+- [x] Descriptions are readable and non-technical
+- [x] All 10 technologies have descriptions
+- [x] Works on mobile (responsive expandable cards)
 
 ---
 
@@ -292,9 +368,18 @@ January 24, 2026
 The portfolio has been completely modernized with:
 - ✅ Monster green color scheme (#38F93E)
 - ✅ Enhanced glassmorphism effects
-- ✅ Particle background system
+- ✅ Particle background system with **3 sizes** (small/medium/large)
+- ✅ **Variable opacity** based on particle size (30-80%)
+- ✅ **More small particles** (25) for subtle background
+- ✅ **Very bright large particles** (5) for focal points
+- ✅ **Green glow effect** around each particle
+- ✅ Tech-focused, futuristic particle appearance
 - ✅ Professional hero section
-- ✅ Grid-based skills layout
+- ✅ Grid-based skills layout with expandable descriptions
+- ✅ Non-technical explanations for all technologies
+- ✅ **Custom Google Translate button** (globe icon only)
+- ✅ **Browser language auto-detection**
+- ✅ **Glassmorphism dropdown** with close button
 - ✅ Modern contact form
 - ✅ Bootstrap 5.3.8
 - ✅ Font Awesome 6.5.0
