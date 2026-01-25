@@ -70,18 +70,24 @@ const whiteParticles = generateWhiteParticles();
     position: absolute;
     background: #FFFFFF;
     border-radius: 50%;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
     animation: float 45s infinite linear;
     pointer-events: none;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   .particle {
     position: absolute;
     background: var(--monster-green);
     border-radius: 50%;
-    box-shadow: 0 0 10px 2px var(--monster-glow);
-    animation: float 20s infinite linear, twinkle 3s infinite ease-in-out;
+    box-shadow: 0 0 6px var(--monster-glow);
+    animation: floatAndTwinkle 20s infinite ease-in-out;
     animation-delay: var(--twinkle-delay, 0s);
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   @keyframes float {
@@ -96,17 +102,31 @@ const whiteParticles = generateWhiteParticles();
       opacity: var(--particle-opacity, 0.5);
     }
     100% {
-      transform: translateY(-100vh) rotate(720deg);
+      transform: translateY(-100vh) rotate(360deg);
       opacity: 0;
     }
   }
 
-  @keyframes twinkle {
-    0%, 100% {
+  @keyframes floatAndTwinkle {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
       opacity: var(--particle-opacity, 0.5);
     }
-    50% {
+    30% {
       opacity: calc(var(--particle-opacity, 0.5) * 0.3);
+    }
+    70% {
+      opacity: calc(var(--particle-opacity, 0.5) * 0.3);
+    }
+    90% {
+      opacity: var(--particle-opacity, 0.5);
+    }
+    100% {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
     }
   }
 </style>
