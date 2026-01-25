@@ -1,0 +1,48 @@
+---
+import { experiences } from '../../data/experience';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<section id="experience">
+  <div class="container">
+    <h2>Experience</h2>
+    <div class="experience-grid">
+      {experiences.map((exp) => (
+        <ProjectCard
+          title={exp.title}
+          description={exp.description}
+          link={exp.link}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+
+  #experience{
+    margin: 5rem;
+  }
+
+  .experience-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  h2 {
+    position: relative;
+    display: inline-block;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+  }
+</style>

@@ -1,0 +1,62 @@
+---
+import { skills } from '../../data/skills';
+import SkillCard from './SkillCard.astro';
+---
+
+<section id="skills" class="skills-section">
+  <div class="container">
+    <h2>Technologies</h2>
+    <div class="skills-grid">
+      {skills.map((skill) => (
+        <SkillCard
+          icon={skill.icon}
+          name={skill.name}
+          description={skill.description}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-section {
+    text-align: center;
+    margin: 5rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  h2 {
+    position: relative;
+    display: inline-block;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+  }
+
+  @media (max-width: 992px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>
