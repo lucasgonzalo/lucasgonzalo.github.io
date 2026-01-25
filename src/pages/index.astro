@@ -5,7 +5,8 @@ const particles = [
     // 25 small particles (50%)
     ...Array.from({ length: 25 }).map(() => ({
         size: 1 + Math.random(),
-        opacity: 0.3 + Math.random() * 0.1,
+        baseOpacity: 0.3 + Math.random() * 0.1,
+        twinkleDelay: Math.random() * 3,
         left: Math.random() * 100,
         animationDelay: Math.random() * 20,
         animationDuration: 15 + Math.random() * 10
@@ -14,7 +15,8 @@ const particles = [
     // 20 medium particles (40%)
     ...Array.from({ length: 20 }).map(() => ({
         size: 2 + Math.random() * 2,
-        opacity: 0.5 + Math.random() * 0.1,
+        baseOpacity: 0.5 + Math.random() * 0.1,
+        twinkleDelay: Math.random() * 3,
         left: Math.random() * 100,
         animationDelay: Math.random() * 20,
         animationDuration: 15 + Math.random() * 10
@@ -23,12 +25,24 @@ const particles = [
     // 5 large particles (10%) - very bright!
     ...Array.from({ length: 5 }).map(() => ({
         size: 4 + Math.random() * 4,
-        opacity: 0.7 + Math.random() * 0.1,
+        baseOpacity: 0.7 + Math.random() * 0.1,
+        twinkleDelay: Math.random() * 3,
         left: Math.random() * 100,
         animationDelay: Math.random() * 20,
         animationDuration: 15 + Math.random() * 10
     }))
 ];
+
+// White background particles (50 small dots, very slow)
+const whiteParticles = Array.from({ length: 50 }).map(() => ({
+    size: 1 + Math.random(),  // 1-2px (doubled from 0.5-1px)
+    opacity: 0.1 + Math.random() * 0.1,   // 10-20% (more subtle)
+    left: Math.random() * 100,
+    animationDelay: Math.random() * 30,  // Random start times
+    animationDuration: 45 + Math.random() * 45,  // 45-90s (slower, was 30-60s)
+    color: 'white'
+}));
+
 ---
 
 <!DOCTYPE html>
@@ -44,32 +58,50 @@ const particles = [
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <!-- Font Awesome 6.5.0 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+     <!-- Google Fonts: Inter & Orbitron -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.ico" type="image/png">
 </head>
 
 <body>
     <!-- Particle Background -->
-    <div class="particle-container" id="particles">
-        {particles.map((particle) => (
-            <div class="particle" style={{
-                left: `${particle.left}%`,
-                animationDelay: `${particle.animationDelay}s`,
-                animationDuration: `${particle.animationDuration}s`,
-                width: `${particle.size}px`,
-                height: `${particle.size}px`,
-                opacity: particle.opacity
-            }}></div>
-        ))}
+    <div class="particle-container">
+        <!-- White Particles (background layer) -->
+        <div id="white-particles">
+            {whiteParticles.map((particle) => (
+                <div class="white-particle" style={{
+                    left: `${particle.left}%`,
+                    animationDelay: `${particle.animationDelay}s`,
+                    animationDuration: `${particle.animationDuration}s`,
+                    width: `${particle.size}px`,
+                    height: `${particle.size}px`,
+                    opacity: particle.opacity
+                }}></div>
+            ))}
+        </div>
+        
+        <!-- Green Particles (foreground layer) -->
+        <div id="green-particles">
+            {particles.map((particle) => (
+                <div class="particle" style={{
+                    left: `${particle.left}%`,
+                    animationDelay: `${particle.animationDelay}s`,
+                    animationDuration: `${particle.animationDuration}s`,
+                    width: `${particle.size}px`,
+                    height: `${particle.size}px`,
+                    '--particle-opacity': particle.baseOpacity,
+                    '--twinkle-delay': `${particle.twinkleDelay}s`
+                }}></div>
+            ))}
+        </div>
     </div>
 
     <!-- Header -->
     <header>
         <div class="container">
-            <h1>Lucas GAM</h1>
+            <h1 class="logo-text">Lucas GAM</h1>
             <nav>
                 <ul>
                     <li><a href="#about">About</a></li>
@@ -92,13 +124,13 @@ const particles = [
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content fade-in-up">
-                    <h1 class="mb-2">Lucas Abregú Maradona</h1>
-                    <p class="subtitle">Full-Stack Ruby on Rails Developer</p>
+        <main>
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content fade-in-up">
+                        <h1 class="logo-text">Lucas Abregú Maradona</h1>
+                        <p class="subtitle">Full-Stack Developer</p>
                     <div class="hero-buttons">
                         <a href="#contact" class="btn-primary">Get In Touch</a>
                         <a href="#experience" class="btn-outline">View Work</a>
@@ -172,6 +204,41 @@ const particles = [
                         <i class="fab fa-google"></i>
                         <span>Google Cloud <i class="fas fa-chevron-down expand-icon"></i></span>
                         <div class="skill-description">Similar to AWS, provides cloud services and infrastructure for building and running applications.</div>
+                    </div>
+                     <div class="skill-card glass">
+                        <i class="fab fa-python"></i>
+                        <span>Python <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">A programming language that's easy to read and write. Great for building web applications, data analysis, and automation.</div>
+                    </div>
+                    <div class="skill-card glass">
+                        <i class="fas fa-rocket"></i>
+                        <span>Astro <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">A modern website framework that makes it fast and easy to build websites. Optimizes your site to load quickly and work on all devices.</div>
+                    </div>
+                    <div class="skill-card glass">
+                        <i class="fas fa-cubes"></i>
+                        <span>Genexus <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">A visual platform that creates business applications without traditional coding. Automates development tasks and helps companies build and manage software faster.</div>
+                    </div>
+                    <div class="skill-card glass">
+                        <i class="fab fa-wordpress"></i>
+                        <span>WordPress <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">A tool for creating and managing websites without writing code. Makes it easy for businesses to set up blogs, online stores, or company websites.</div>
+                    </div>
+                    <div class="skill-card glass">
+                        <i class="fab fa-jira"></i>
+                        <span>Jira <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">Project tracking and management software. Helps teams plan work, track bugs, and collaborate on projects in one place.</div>
+                    </div>
+                    <div class="skill-card glass">
+                        <i class="fab fa-microsoft"></i>
+                        <span>Microsoft Azure <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">A cloud computing platform that provides services for building, deploying, and managing applications. Like having a virtual data center.</div>
+                    </div>
+                    <div class="skill-card glass">
+                        <i class="fas fa-odoo"></i>
+                        <span>Odoo <i class="fas fa-chevron-down expand-icon"></i></span>
+                        <div class="skill-description">A business management platform that combines tools for accounting, inventory, customer management, and more into one system.</div>
                     </div>
                 </div>
             </div>

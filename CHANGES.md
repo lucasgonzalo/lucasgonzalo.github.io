@@ -43,7 +43,8 @@ January 24, 2026
 - Smooth transitions
 - Underline animation on hover
 - Responsive mobile layout
-- Gradient text effect for logo
+- **Removed logo** from header (moved to hero)
+- Gradient text effect now in hero only
 
 ### 2. Hero Section (NEW)
 - Professional intro with animated background
@@ -59,11 +60,19 @@ January 24, 2026
 - Better paragraph structure
 
 ### 4. Skills Section
-- **Grid Layout**: 3-column responsive grid (3→2→1)
+- **Grid Layout**: 4-column responsive grid (4→2→1)
 - **Skill Cards**: Individual glass cards for each skill
 - **Hover Effects**: Scale + glow on interaction
 - **Icons**: Font Awesome 6.5.0 icons
-- **Skills List**: 10 technologies with clear labels
+- **Skills List**: 17 technologies with clear labels
+- **New Technologies Added**:
+  - **Python**: Programming language for web apps, data analysis, and automation
+  - **Astro**: Modern website framework for fast, optimized sites
+  - **Genexus**: Low-code platform for creating business applications without traditional coding
+  - **WordPress**: Tool for creating and managing websites without writing code
+  - **Jira**: Project tracking and management software
+  - **Microsoft Azure**: Cloud computing platform for apps
+  - **Odoo**: Business management platform with accounting, inventory, customer management
 
 ### 5. Experience Section
 - Modern project cards
@@ -123,23 +132,41 @@ January 24, 2026
 
 ## New Features
 
-### 1. Particle Background System (Updated)
-- 50 randomly positioned particles with **3 sizes** and **variable opacity**
-- CSS-based animation (no JavaScript runtime overhead)
-- Monster green color
-- Smooth floating animation (15-25s duration)
-- Tech-focused, subtle effect
+### 1. Particle Background System (Updated - Twinkling Stars & White Background)
+- 75 total particles (50 green + 25 white)
+- **CSS variable-based twinkling**: Each green particle twinkles independently
+- **Random twinkle phase**: `--twinkle-delay` CSS variable per particle
+- **3-second fade cycle**: 100% → 50% dim → 100% bright → 100%
+- **Natural star effect**: Particles twinkle like real stars
+- **Green glow**: Each particle has green glow (box-shadow)
+- **3 sizes with variable opacity**: Small (30-40%), Medium (50-60%), Large (70-80%)
+- **White background particles**: 25 very small dots (0.5-1px)
+- **Very slow white movement**: 30-60s duration
+- **Layered depth effect**: White particles behind green particles
+- **Subtle white opacity**: 10-20% (background stars)
+- **Separate containers**: Clean code structure, better performance
 
-#### Particle Sizes and Distribution:
-- **25 Small Particles** (50%): 1-2px, 30-40% opacity (subtle background texture)
-- **20 Medium Particles** (40%): 2-4px, 50-60% opacity (visible tech feel)
-- **5 Large Particles** (10%): 4-8px, 70-80% opacity (very bright focal points!)
+#### Twinkling Stars (NEW):
+- **CSS variable-based twinkling**: Each particle twinkles independently
+- **Random twinkle phase**: `--twinkle-delay` CSS variable per particle
+- **Fade cycle**: 3-second cycle (100% → 50% dim → 100% bright → 100%)
+- **Natural effect**: Particles twinkle like real stars
+- **Independent animation**: Not synchronized, creates organic feel
 
-#### Particle Glow Effect:
-- Each particle has a **green glow** using box-shadow
-- Creates a tech-focused, futuristic appearance
-- Glow uses Monster green color with 30% opacity
-- Enhances visual interest without being distracting
+ #### White Background Particles (NEW):
+ - **50 white dots**: Small particles (1-2px) - doubled from 25, more visible
+ - **Background layer**: Behind green particles (creates depth)
+ - **Even slower movement**: 45-90 seconds duration (increased from 30-60s)
+ - **More subtle opacity**: 10-20% (decreased from 10-20%)
+ - **White glow**: Subtle glow around each white particle
+ - **Z-index**: Behind green particles (creates layered depth effect)
+ - **Better visibility**: Doubled count ensures stars are properly displayed
+
+#### Layered Depth Effect:
+- **Background layer**: White particles (slow, small, subtle)
+- **Foreground layer**: Green particles (twinkling, larger)
+- **Visual result**: 3D depth, immersive space/tech feel
+- **Performance**: Both layers GPU-accelerated
 
 ### 2. Scroll Animations
 - Fade-in-up effect on scroll
@@ -154,7 +181,7 @@ January 24, 2026
 - Smooth transitions (0.3s ease)
 
 ### 4. Responsive Design
-- **Desktop**: Full grid layouts
+- **Desktop**: 4-column grid layouts
 - **Tablet**: 2-column grids
 - **Mobile**: Stacked layouts, optimized spacing
 - Breakpoints: 992px and 768px
@@ -171,13 +198,33 @@ January 24, 2026
 - Click outside dropdown to close
 - Globe icon rotates 20° on hover with glow effect
 
-### 6. Expandable Technology Cards
+### 6. Orbitron Font for Logo (NEW)
+- **Added Orbitron font**: Google Font added to typography
+- **Applied to logo**: "Lucas GAM" header uses Orbitron
+- **Font style**: Bold weight (700)
+- **Gradient text**: Preserved green gradient effect
+- **Custom CSS class**: `.logo-text` for Orbitron styling
+- **Professional appearance**: Orbitron creates tech-focused look
+
+### 7. Logo Animation (NEW)
+- **Moved to hero**: "Lucas GAM" relocated from header to hero section
+- **Position**: Appears at top of hero content
+- **Combined animation**: Subtle pulse/breathing + hover glow effect
+- **Breathing cycle**: 4-second animation with expanding/contracting glow
+- **Dual-layer glow**: Monster green primary glow + translucent secondary glow
+- **Hover effect**: Logo scales up to 1.05x and intensifies glow
+- **Organic feel**: Always-active breathing creates alive, professional appearance
+- **Smooth transitions**: 0.4s cubic-bezier easing
+- **Responsive**: Scales to 2rem on mobile (768px breakpoint)
+- **Interactive**: Cursor indicates logo is interactive element
+
+### 8. Expandable Technology Cards
 - Each skill card is now interactive
 - Click to expand and see non-technical description
 - Accordion behavior: only one card can be expanded at a time
 - Smooth expand/collapse animation (0.3s ease)
 - Visual indicator: chevron icon rotates on expand
-- Non-technical descriptions for all 10 technologies:
+- Non-technical descriptions for all 13 technologies:
   - HTML5: Structure and content foundation of web pages
   - CSS3: Styling and layout system for visual presentation
   - JavaScript: Adds interactivity and dynamic behavior
@@ -188,7 +235,13 @@ January 24, 2026
   - Git: Tracks changes to code over time
   - Amazon Web Services: Cloud computing services
   - Google Cloud: Cloud services and infrastructure
-- Click outside cards to close expanded description
+  - Python: Programming language for web apps, data analysis, and automation
+  - Astro: Modern website framework that makes sites fast and easy to build
+  - Genexus: Low-code platform for creating business applications without traditional coding
+  - WordPress: Tool for creating and managing websites without writing code
+  - Jira: Project tracking and management software
+  - Microsoft Azure: Cloud computing platform for building, deploying, and managing applications
+  - Odoo: Business management platform with accounting, inventory, customer management
 
 ---
 
@@ -269,6 +322,18 @@ January 24, 2026
 - [x] Each particle has green glow effect
 - [x] Glow creates tech-focused appearance
 - [x] Particles stand out against dark background with varying sizes
+- [x] Green particles twinkle independently (not synchronized)
+- [x] Green particles fade in/out rhythmically (3s cycle)
+- [x] Green particles have random twinkle phases
+- [x] Green particles create natural star field effect
+- [x] **50 white particles** visible (1-2px, doubled count)
+- [x] White particles are white (#FFFFFF)
+- [x] White particles have more subtle opacity (10-20%)
+- [x] White particles move very slowly (45-90s)
+- [x] White particles appear behind green particles
+- [x] White particles create background star field
+- [x] Layered depth effect (white behind green)
+- [x] White particles have subtle glow effect
 
 ### Google Translate:
 - [x] Globe icon appears in navigation (icon only)
@@ -283,7 +348,16 @@ January 24, 2026
 - [x] Browser language is auto-detected
 - [x] Language dropdown shows browser language as default
 - [x] Translating to Spanish works (or any language)
-
+- [x] Logo "Lucas GAM" appears in hero section (not header)
+- [x] Logo uses Orbitron font
+- [x] Logo has gradient text effect
+- [x] Logo has breathing/pulse animation (4s cycle)
+- [x] Logo has dual-layer glow effect
+- [x] Logo scales up on hover (1.05x)
+- [x] Logo glow intensifies on hover
+- [x] Logo has smooth transitions (0.4s)
+- [x] Logo is responsive (2rem on mobile)
+ 
 ### Other Features:
 - [x] Build successfully without errors
 - [x] All sections render correctly
@@ -302,8 +376,9 @@ January 24, 2026
 - [x] Clicking expanded card collapses it
 - [x] Clicking outside cards closes expanded description
 - [x] Descriptions are readable and non-technical
-- [x] All 10 technologies have descriptions
+- [x] All 13 technologies have descriptions
 - [x] Works on mobile (responsive expandable cards)
+- [x] Skills grid is 4 columns (desktop)
 
 ---
 
@@ -368,18 +443,22 @@ January 24, 2026
 The portfolio has been completely modernized with:
 - ✅ Monster green color scheme (#38F93E)
 - ✅ Enhanced glassmorphism effects
-- ✅ Particle background system with **3 sizes** (small/medium/large)
-- ✅ **Variable opacity** based on particle size (30-80%)
-- ✅ **More small particles** (25) for subtle background
-- ✅ **Very bright large particles** (5) for focal points
+- ✅ Particle background system with **75 particles** (50 green + 50 white)
+- ✅ **3 particle sizes** (small/medium/large) with variable opacity
+- ✅ **Twinkling green particles** (CSS variable-based, 3s fade cycle)
 - ✅ **Green glow effect** around each particle
-- ✅ Tech-focused, futuristic particle appearance
-- ✅ Professional hero section
-- ✅ Grid-based skills layout with expandable descriptions
-- ✅ Non-technical explanations for all technologies
+- ✅ **50 white background particles** (1-2px, even slower: 45-90s)
+- ✅ **Layered depth effect** (white behind green)
+ - ✅ Professional hero section
+- ✅ 4-column skills grid with expandable descriptions
+- ✅ **17 technologies** with non-technical explanations
 - ✅ **Custom Google Translate button** (globe icon only)
 - ✅ **Browser language auto-detection**
 - ✅ **Glassmorphism dropdown** with close button
+- ✅ **Logo in hero section** with Orbitron font and gradient
+- ✅ **Breathing/pulse animation** on logo (4s cycle, dual-layer glow)
+- ✅ **Hover effect** on logo (scale up 1.05x + intensified glow)
+- ✅ **Responsive logo** (2rem on mobile)
 - ✅ Modern contact form
 - ✅ Bootstrap 5.3.8
 - ✅ Font Awesome 6.5.0
@@ -389,5 +468,7 @@ The portfolio has been completely modernized with:
 - ✅ Smooth animations
 - ✅ GitHub Pages deployment
 - ✅ Removed WIP section
+- ✅ **17 technologies** total in skills grid
+- ✅ All features preserved from previous changes
 
 The site is production-ready and ready for deployment to `https://lucasgonzalo.github.io`.

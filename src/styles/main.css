@@ -125,13 +125,42 @@ p {
   overflow: hidden;
 }
 
+#white-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#green-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.white-particle {
+  position: absolute;
+  background: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  animation: float 45s infinite linear;
+  pointer-events: none;
+}
+
 .particle {
   position: absolute;
   background: var(--monster-green);
   border-radius: 50%;
-  opacity: 0.5;
-  animation: float 20s infinite linear;
   box-shadow: 0 0 10px 2px var(--monster-glow);
+  animation: float 20s infinite linear, twinkle 3s infinite ease-in-out;
+  animation-delay: var(--twinkle-delay, 0s);
 }
 
 @keyframes float {
@@ -140,14 +169,23 @@ p {
     opacity: 0;
   }
   10% {
-    opacity: 0.5;
+    opacity: var(--particle-opacity, 0.5);
   }
   90% {
-    opacity: 0.5;
+    opacity: var(--particle-opacity, 0.5);
   }
   100% {
     transform: translateY(-100vh) rotate(720deg);
     opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: var(--particle-opacity, 0.5);
+  }
+  50% {
+    opacity: calc(var(--particle-opacity, 0.5) * 0.3);  /* 70% dimmer */
   }
 }
 
@@ -177,10 +215,49 @@ header .container {
 header h1 {
   font-size: 1.5rem;
   margin: 0;
+}
+
+.logo-text {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  position: relative;
+  display: inline-block;
+  animation: breathe 4s ease-in-out infinite;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Breathing/Pulse Animation */
+@keyframes breathe {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px var(--monster-glow),
+      0 0 20px rgba(56, 249, 62, 0.2);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px var(--monster-glow),
+      0 0 30px rgba(56, 249, 62, 0.15);
+  }
+}
+
+/* Hover State */
+.logo-text:hover {
+  transform: scale(1.05);
+  text-shadow: 
+    0 0 20px var(--monster-glow-hover),
+    0 0 40px rgba(56, 249, 62, 0.25);
+  cursor: default;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 2rem;
+  }
 }
 
 nav ul {
@@ -313,7 +390,7 @@ section {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   margin-top: 3rem;
 }
