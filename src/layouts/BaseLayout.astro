@@ -5,6 +5,8 @@ interface Props {
 }
 
 const { title, description = 'Lucas Abregú Maradona - Full-Stack Ruby on Rails Developer with 4 years of experience building robust web applications' } = Astro.props;
+
+import '../styles/global.css';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -29,9 +31,6 @@ const { title, description = 'Lucas Abregú Maradona - Full-Stack Ruby on Rails 
 
   <!-- New animated green diamond favicon -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="/src/styles/global.css">
 </head>
 
 <body>
