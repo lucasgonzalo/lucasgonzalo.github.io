@@ -1,0 +1,112 @@
+---
+import { generateGreenParticles, generateWhiteParticles } from '../../data/particles';
+
+const greenParticles = generateGreenParticles();
+const whiteParticles = generateWhiteParticles();
+---
+
+<div class="particle-container">
+  <div id="white-particles">
+    {whiteParticles.map((particle) => (
+      <div class="white-particle" style={{
+        left: `${particle.left}%`,
+        animationDelay: `${particle.animationDelay}s`,
+        animationDuration: `${particle.animationDuration}s`,
+        width: `${particle.size}px`,
+        height: `${particle.size}px`,
+        opacity: particle.opacity
+      }}></div>
+    ))}
+  </div>
+
+  <div id="green-particles">
+    {greenParticles.map((particle) => (
+      <div class="particle" style={{
+        left: `${particle.left}%`,
+        animationDelay: `${particle.animationDelay}s`,
+        animationDuration: `${particle.animationDuration}s`,
+        width: `${particle.size}px`,
+        height: `${particle.size}px`,
+        '--particle-opacity': particle.baseOpacity,
+        '--twinkle-delay': `${particle.twinkleDelay}s`
+      }}></div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  #white-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  #green-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .white-particle {
+    position: absolute;
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    animation: float 45s infinite linear;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    background: var(--monster-green);
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px var(--monster-glow);
+    animation: float 20s infinite linear, twinkle 3s infinite ease-in-out;
+    animation-delay: var(--twinkle-delay, 0s);
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: var(--particle-opacity, 0.5);
+    }
+    90% {
+      opacity: var(--particle-opacity, 0.5);
+    }
+    100% {
+      transform: translateY(-100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: var(--particle-opacity, 0.5);
+    }
+    50% {
+      opacity: calc(var(--particle-opacity, 0.5) * 0.3);
+    }
+  }
+</style>

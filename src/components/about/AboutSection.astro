@@ -1,0 +1,39 @@
+---
+---
+
+<section id="about">
+  <div class="container">
+    <div class="glass p-4 fade-in-up">
+      <h2>About Me</h2>
+      <p>Hi, I'm Lucas Gonzalo, a passionate Ruby on Rails developer with 4 years of experience building robust and custom web applications. I specialize in creating scalable solutions that drive business growth.</p>
+      <p>My expertise spans across full-stack development, from business problem analysis walking through building efficient backend systems and designing intuitive user interfaces. I'm committed to writing clean, maintainable code and staying updated with latest technologies.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+
+  #about{
+    margin: 5rem;
+  }
+
+  h2 {
+    position: relative;
+    display: inline-block;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+  }
+
+  .p-4 {
+    padding: 1.5rem !important;
+  }
+</style>

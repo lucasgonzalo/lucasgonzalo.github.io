@@ -1,0 +1,123 @@
+---
+---
+
+<section id="contact">
+  <div class="container">
+    <div class="glass p-4">
+      <h2 class="text-center">Contact</h2>
+      <div class="contact-info">
+        <p>Have a project in mind or want to collaborate? Feel free to reach out!</p>
+        <p>Send me an email at <a href="mailto:lgabregu@gmail.com">lgabregu@gmail.com</a></p>
+        <p>Connect with me on <a href="https://www.linkedin.com/in/lucas-gonzalo-abregu-maradona" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+      </div>
+
+      <form class="contact-form" action="https://formspree.io/f/xovabybo" method="POST">
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" class="form-control" rows="5" placeholder="Drop some words here..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  h2 {
+    position: relative;
+    display: inline-block;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+  }
+
+  .contact-info {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .contact-info p {
+    margin-bottom: 1rem;
+  }
+
+  .contact-info a {
+    color: var(--monster-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .contact-info a:hover {
+    color: var(--monster-green-light);
+    text-decoration: underline;
+  }
+
+  .contact-form {
+    max-width: 600px;
+    margin: 3rem auto 0;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 1rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: var(--monster-green);
+    box-shadow: 0 0 15px var(--monster-glow);
+  }
+
+  .form-control::placeholder {
+    color: var(--text-muted);
+  }
+
+  .btn-submit {
+    background: var(--gradient-primary);
+    color: var(--bg-deep);
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px var(--monster-glow);
+    width: 100%;
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px var(--monster-glow-hover);
+  }
+</style>
