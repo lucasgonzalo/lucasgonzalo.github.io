@@ -1,0 +1,80 @@
+---
+import { projects } from '../../data/projects';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<section id="projects" class="projects-section">
+  <div class="container">
+    <h2>Projects</h2>
+    <p class="section-description">Featured projects showcasing my expertise in full-stack development, from complex enterprise systems to innovative solutions.</p>
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <ProjectCard
+          title={project.title}
+          description={project.description}
+          features={project.features}
+          technologies={project.technologies}
+          status={project.status}
+          link={project.link}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-section {
+    margin: 5rem;
+  }
+
+  .section-description {
+    max-width: 800px;
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  h2 {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+  }
+
+  @media (max-width: 992px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .projects-section {
+      margin: 5rem 0.5rem;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .section-description {
+      font-size: 1rem;
+    }
+  }
+</style>

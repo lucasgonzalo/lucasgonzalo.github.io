@@ -33,8 +33,9 @@
   box-sizing: border-box;
 }
 
-html {
+ html {
   scroll-behavior: smooth;
+  scroll-padding-top: 150px;
 }
 
 body {
@@ -100,13 +101,27 @@ p {
   padding: 0 1.5rem;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 0 0.5rem;
+ @media (max-width: 768px) {
+    .container {
+      padding: 0 0.5rem;
+    }
+
+    html {
+      scroll-padding-top: 170px;
+    }
   }
+
+ .text-center { text-align: center; }
+
+section {
+  scroll-margin-top: 150px;
 }
 
-.text-center { text-align: center; }
+@media (max-width: 768px) {
+  section {
+    scroll-margin-top: 170px;
+  }
+}
 
 /* Fade-in animation utility */
 @keyframes fadeInUp {

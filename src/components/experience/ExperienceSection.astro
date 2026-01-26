@@ -1,17 +1,19 @@
 ---
-import { experiences } from '../../data/experience';
-import ProjectCard from './ProjectCard.astro';
+import { workHistory } from '../../data/work-history';
+import WorkTimelineCard from './WorkTimelineCard.astro';
 ---
 
 <section id="experience">
   <div class="container">
-    <h2>Experience</h2>
-    <div class="experience-grid">
-      {experiences.map((exp) => (
-        <ProjectCard
-          title={exp.title}
-          description={exp.description}
-          link={exp.link}
+    <h2>Work Experience</h2>
+    <div class="timeline-container">
+      {workHistory.map((work) => (
+        <WorkTimelineCard
+          company={work.company}
+          role={work.role}
+          period={work.period}
+          description={work.description}
+          isCurrent={work.isCurrent}
         />
       ))}
     </div>
@@ -19,20 +21,18 @@ import ProjectCard from './ProjectCard.astro';
 </section>
 
 <style>
-
-  #experience{
+  #experience {
     margin: 5rem;
   }
 
-  .experience-grid {
-    display: grid;
-    gap: 2rem;
-    margin-top: 1rem;
+  .timeline-container {
+    margin-top: 2rem;
   }
 
   h2 {
     position: relative;
     display: inline-block;
+    margin-bottom: 1rem;
   }
 
   h2::after {
@@ -49,6 +49,10 @@ import ProjectCard from './ProjectCard.astro';
   @media (max-width: 768px) {
     #experience {
       margin: 5rem 0.5rem;
+    }
+
+    .timeline-container {
+      margin-top: 1.5rem;
     }
   }
 </style>
