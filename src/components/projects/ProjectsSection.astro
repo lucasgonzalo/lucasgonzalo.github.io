@@ -3,9 +3,9 @@ import { projects } from '../../data/projects';
 import ProjectCard from './ProjectCard.astro';
 ---
 
-<section id="projects" class="projects-section">
+<section class="projects-section">
   <div class="container">
-    <h2>Projects</h2>
+    <h2 id="projects">Projects</h2>
     <p class="section-description">Featured projects showcasing my expertise in full-stack development, from complex enterprise systems to innovative solutions.</p>
     <div class="projects-grid">
       {projects.map((project) => (

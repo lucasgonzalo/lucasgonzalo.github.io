@@ -3,9 +3,9 @@ import { skills } from '../../data/skills';
 import SkillCard from './SkillCard.astro';
 ---
 
-<section id="skills" class="skills-section">
+<section class="skills-section">
   <div class="container">
-    <h2>Technologies</h2>
+    <h2 id="skills">Technologies</h2>
     <div class="skills-grid">
       {skills.map((skill) => (
         <SkillCard

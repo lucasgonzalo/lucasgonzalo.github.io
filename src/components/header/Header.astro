@@ -227,21 +227,6 @@
 </style>
 
 <script>
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    const link = anchor as HTMLAnchorElement;
-    link.addEventListener('click', (e) => {
-      const target = document.querySelector(link.getAttribute('href') || '');
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    });
-  });
-
   // Google Translate dropdown toggle
   const translateToggle = document.getElementById('translateToggle');
   const translateDropdown = document.getElementById('googleTranslateDropdown');
