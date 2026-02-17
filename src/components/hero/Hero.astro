@@ -4,15 +4,27 @@
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <h1 class="logo-text">Lucas Abregú Maradona</h1>
-      <p class="subtitle">Software Developer</p>
+      <h1 class="logo-text" data-i18n="hero.title">Lucas Abregú Maradona</h1>
+      <p class="subtitle" data-i18n="hero.subtitle">Software Developer</p>
       <div class="hero-buttons">
-        <a href="#contact" class="btn-primary">Get In Touch</a>
-        <a href="#experience" class="btn-outline">View Work</a>
+        <a href="#contact" class="btn-primary" data-i18n="hero.getInTouch">Get In Touch</a>
+        <a href="#experience" class="btn-outline" data-i18n="hero.viewWork">View Work</a>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  window.addEventListener('language-changed', () => {
+    const t = window.t || ((key) => key);
+    document.querySelectorAll('.hero [data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (key) {
+        el.textContent = t(key);
+      }
+    });
+  });
+</script>
 
 <style>
   section {

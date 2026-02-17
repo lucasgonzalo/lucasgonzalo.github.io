@@ -1,14 +1,14 @@
 export interface Project {
   title: string;
   description: string;
-  objective: string;
   features: string[];
   technologies: string[];
   status: 'completed' | 'in-development' | 'live';
-  businessFeatures: string[];
-  techStack: string[];
-  technicalFeatures: string[];
-  architecture: string;
+  objective?: string;
+  businessFeatures?: string[];
+  techStack?: string[];
+  technicalFeatures?: string[];
+  architecture?: string;
 }
 
 export const projects: Project[] = [

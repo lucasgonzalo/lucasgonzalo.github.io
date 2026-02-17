@@ -7,10 +7,13 @@ interface Props {
 const { title, description = 'Lucas Abregú Maradona - Full-Stack Ruby on Rails Developer with 4 years of experience building robust web applications' } = Astro.props;
 
 import '../styles/global.css';
+import { initLanguage, t, getLanguage } from '../i18n';
+
+// Note: i18n is initialized in the client-side script (/scripts/i18n.js)
+// We export these functions for potential future use in components
 ---
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVXEB8RBHP"></script>
@@ -63,6 +66,9 @@ import '../styles/global.css';
   <slot name="header" />
   <main><slot /></main>
   <footer><slot name="footer" /></footer>
+
+  <!-- i18n Script -->
+  <script is:inline src="/scripts/i18n.js"></script>
 
   <!-- Bootstrap 5.3.8 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

@@ -6,8 +6,8 @@ import ProjectModal from './ProjectModal.astro';
 
 <section class="projects-section">
   <div class="container">
-    <h2 id="projects">Projects</h2>
-    <p class="section-description">Featured projects showcasing my expertise in full-stack development, from complex enterprise systems to innovative solutions.</p>
+    <h2 id="projects" data-i18n="projects.title">Projects</h2>
+    <p class="section-description" data-i18n="projects.description">Featured projects showcasing my expertise in full-stack development, from complex enterprise systems to innovative solutions.</p>
     <div class="projects-grid">
       {projects.map((project, index) => (
         <ProjectCard
@@ -36,7 +36,7 @@ import ProjectModal from './ProjectModal.astro';
 ))}
 
 <script>
-  window.openProjectModal = (index: number) => {
+  window.openProjectModal = (index) => {
     const modal = document.getElementById(`modal-${index}`);
     if (modal) {
       modal.style.display = 'flex';
@@ -60,6 +60,17 @@ import ProjectModal from './ProjectModal.astro';
       }, 250);
     }
   };
+
+  window.addEventListener('language-changed', () => {
+    const t = window.t || ((key) => key);
+    
+    document.querySelectorAll('.projects-section [data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (key) {
+        el.textContent = t(key);
+      }
+    });
+  });
 </script>
 
 <style>

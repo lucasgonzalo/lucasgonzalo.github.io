@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Work Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Lucas Abregú Maradona",
+    "subtitle": "Software Developer",
+    "getInTouch": "Get In Touch",
+    "viewWork": "View Work"
+  },
+  "about": {
+    "title": "About Me",
+    "greeting": "Hi, I'm Lucas Gonzalo, a passionate Ruby on Rails developer with 4 years of experience building robust and custom web applications. I specialize in creating scalable solutions that drive business growth.",
+    "expertise": "My expertise spans across full-stack development, from business problem analysis walking through building efficient backend systems and designing intuitive user interfaces. I'm committed to writing clean, maintainable code and staying updated with latest technologies."
+  },
+  "skills": {
+    "title": "Technologies"
+  },
+  "experience": {
+    "title": "Work Experience"
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "Featured projects showcasing my expertise in full-stack development, from complex enterprise systems to innovative solutions.",
+    "viewMore": "View More",
+    "status": {
+      "completed": "Completed",
+      "live": "Live",
+      "inDevelopment": "In Development"
+    },
+    "modal": {
+      "objective": "Project Objective",
+      "detailedDescription": "Detailed Description",
+      "businessFeatures": "Business Features",
+      "techStack": "Tech Stack",
+      "technicalFeatures": "Technical Features",
+      "architecture": "Architecture",
+      "close": "Close Modal"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Have a project in mind or want to collaborate? Feel free to reach out!",
+    "emailLabel": "Your Email",
+    "emailPlaceholder": "your@email.com",
+    "messageLabel": "Your Message",
+    "messagePlaceholder": "Drop some words here...",
+    "sendButton": "Send Message",
+    "email": "lgabregu@gmail.com",
+    "linkedin": "LinkedIn"
+  },
+  "languageSwitcher": {
+    "title": "Language"
+  },
+  "googleTranslate": {
+    "title": "Auto Translate"
+  }
+}

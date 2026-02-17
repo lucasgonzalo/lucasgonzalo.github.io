@@ -24,20 +24,20 @@ const {
   <div class="modal-content scale-in">
     <div class="modal-header">
       <h2>{title}</h2>
-      <button class="close-btn" aria-label="Cerrar modal">×</button>
+      <button class="close-btn" aria-label="Cerrar modal" data-i18n="projects.modal.close">×</button>
     </div>
     
     <div class="modal-body">
       <section class="info-section">
-        <h3>📋 Objetivo del Proyecto</h3>
+        <h3 data-i18n="projects.modal.objective">📋 Objetivo del Proyecto</h3>
         <p class="objective-text">{objective}</p>
       </section>
 
       <section class="info-section">
-        <h3>📖 Descripción Detallada</h3>
+        <h3 data-i18n="projects.modal.detailedDescription">📖 Descripción Detallada</h3>
         
         <div class="subsection">
-          <h4>Funcionalidades de Negocio</h4>
+          <h4 data-i18n="projects.modal.businessFeatures">Funcionalidades de Negocio</h4>
           <ul>
             {businessFeatures.map((feature) => (
               <li>{feature}</li>
@@ -46,7 +46,7 @@ const {
         </div>
 
         <div class="subsection">
-          <h4>Stack Tecnológico</h4>
+          <h4 data-i18n="projects.modal.techStack">Stack Tecnológico</h4>
           <ul>
             {techStack.map((tech) => (
               <li>{tech}</li>
@@ -55,7 +55,7 @@ const {
         </div>
 
         <div class="subsection">
-          <h4>Características Técnicas</h4>
+          <h4 data-i18n="projects.modal.technicalFeatures">Características Técnicas</h4>
           <ul>
             {technicalFeatures.map((feature) => (
               <li>{feature}</li>
@@ -64,7 +64,7 @@ const {
         </div>
 
         <div class="subsection">
-          <h4>Arquitectura</h4>
+          <h4 data-i18n="projects.modal.architecture">Arquitectura</h4>
           <p class="architecture-text">{architecture}</p>
         </div>
       </section>
@@ -94,6 +94,31 @@ const {
   closeBtn?.addEventListener('click', () => {
     if (window.closeModal) window.closeModal();
   });
+
+  // Update translations on language change
+  window.addEventListener('language-changed', () => {
+    updateModalText();
+  });
+
+  function updateModalText() {
+    const t = window.t || ((key) => key);
+    
+    if (overlay) {
+      overlay.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (key) {
+          const translation = t(key);
+          if (key === 'projects.modal.objective') {
+            el.textContent = '📋 ' + translation;
+          } else if (key === 'projects.modal.detailedDescription') {
+            el.textContent = '📖 ' + translation;
+          } else {
+            el.textContent = translation;
+          }
+        }
+      });
+    }
+  }
 </script>
 
 <style>

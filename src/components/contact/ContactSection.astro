@@ -4,27 +4,47 @@
 <section>
   <div class="container">
     <div class="glass p-4">
-      <h2 class="text-center" id="contact">Contact</h2>
-      <div class="contact-info">
-        <p>Have a project in mind or want to collaborate? Feel free to reach out!</p>
-        <p>Send me an email at <a href="mailto:lgabregu@gmail.com">lgabregu@gmail.com</a></p>
-        <p>Connect with me on <a href="https://www.linkedin.com/in/lucas-gonzalo-abregu-maradona" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+      <h2 class="text-center" id="contact" data-i18n="contact.title">Contact</h2>
+      <div class="contact-info contact-intro">
+        <p data-i18n="contact.intro">Have a project in mind or want to collaborate? Feel free to reach out!</p>
+        <p>Send me an email at <a href="mailto:lgabregu@gmail.com" data-i18n="contact.email">lgabregu@gmail.com</a></p>
+        <p>Connect with me on <a href="https://www.linkedin.com/in/lucas-gonzalo-abregu-maradona" target="_blank" rel="noopener noreferrer" data-i18n="contact.linkedin">LinkedIn</a></p>
       </div>
 
       <form class="contact-form" action="https://formspree.io/f/xovabybo" method="POST">
         <div class="form-group">
-          <label for="email">Your Email</label>
+          <label for="email" data-i18n="contact.emailLabel">Your Email</label>
           <input type="email" id="email" name="email" class="form-control" placeholder="your@email.com" required />
         </div>
         <div class="form-group">
-          <label for="message">Your Message</label>
+          <label for="message" data-i18n="contact.messageLabel">Your Message</label>
           <textarea id="message" name="message" class="form-control" rows="5" placeholder="Drop some words here..." required></textarea>
         </div>
-        <button type="submit" class="btn-submit">Send Message</button>
+        <button type="submit" class="btn-submit" data-i18n="contact.sendButton">Send Message</button>
       </form>
     </div>
   </div>
 </section>
+
+<script>
+  window.addEventListener('language-changed', () => {
+    const t = window.t || ((key) => key);
+    
+    document.querySelectorAll('.glass [data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (key) {
+        el.textContent = t(key);
+      }
+    });
+    
+    // Update placeholders
+    const emailInput = document.querySelector('input[name="email"]');
+    const messageInput = document.querySelector('textarea[name="message"]');
+    
+    if (emailInput) emailInput.placeholder = t('contact.emailPlaceholder');
+    if (messageInput) messageInput.placeholder = t('contact.messagePlaceholder');
+  });
+</script>
 
 <style>
   h2 {

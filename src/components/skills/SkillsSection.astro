@@ -5,7 +5,7 @@ import SkillCard from './SkillCard.astro';
 
 <section class="skills-section">
   <div class="container">
-    <h2 id="skills">Technologies</h2>
+    <h2 id="skills" data-i18n="skills.title">Technologies</h2>
     <div class="skills-grid">
       {skills.map((skill) => (
         <SkillCard
@@ -17,6 +17,17 @@ import SkillCard from './SkillCard.astro';
     </div>
   </div>
 </section>
+
+<script>
+  window.addEventListener('language-changed', () => {
+    const t = window.t || ((key) => key);
+    const title = document.querySelector('#skills');
+    if (title) {
+      const key = title.getAttribute('data-i18n');
+      if (key) title.textContent = t(key);
+    }
+  });
+</script>
 
 <style>
   .skills-section {

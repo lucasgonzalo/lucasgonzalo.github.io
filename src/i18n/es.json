@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "about": "Sobre Mí",
+    "skills": "Habilidades",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Lucas Abregú Maradona",
+    "subtitle": "Desarrollador de Software",
+    "getInTouch": "Contáctame",
+    "viewWork": "Ver Trabajos"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "greeting": "Hola, soy Lucas Gonzalo, un apasionado desarrollador Ruby on Rails con 4 años de experiencia construyendo aplicaciones web robustas y personalizadas. Me especializo en crear soluciones escalables que impulsan el crecimiento empresarial.",
+    "expertise": "Mi experiencia abarca el desarrollo full-stack, desde el análisis de problemas de negocio hasta la construcción de sistemas backend eficientes y el diseño de interfaces de usuario intuitivas. Me comprometo a escribir código limpio y mantenible, manteniéndome actualizado con las últimas tecnologías."
+  },
+  "skills": {
+    "title": "Tecnologías"
+  },
+  "experience": {
+    "title": "Experiencia Laboral"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "description": "Proyectos destacados que muestran mi experiencia en desarrollo full-stack, desde sistemas empresariales complejos hasta soluciones innovadoras.",
+    "viewMore": "Ver Más",
+    "status": {
+      "completed": "Completado",
+      "live": "En Producción",
+      "inDevelopment": "En Desarrollo"
+    },
+    "modal": {
+      "objective": "Objetivo del Proyecto",
+      "detailedDescription": "Descripción Detallada",
+      "businessFeatures": "Funcionalidades de Negocio",
+      "techStack": "Stack Tecnológico",
+      "technicalFeatures": "Características Técnicas",
+      "architecture": "Arquitectura",
+      "close": "Cerrar Modal"
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "intro": "¿Tienes un proyecto en mente o quieres colaborar? ¡No dudes en contactarme!",
+    "emailLabel": "Tu Email",
+    "emailPlaceholder": "tu@email.com",
+    "messageLabel": "Tu Mensaje",
+    "messagePlaceholder": "Escribe algo aquí...",
+    "sendButton": "Enviar Mensaje",
+    "email": "lgabregu@gmail.com",
+    "linkedin": "LinkedIn"
+  },
+  "languageSwitcher": {
+    "title": "Idioma"
+  },
+  "googleTranslate": {
+    "title": "Traducción Automática"
+  }
+}
