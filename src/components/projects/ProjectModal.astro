@@ -1,0 +1,346 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  objective: string;
+  businessFeatures: string[];
+  techStack: string[];
+  technicalFeatures: string[];
+  architecture: string;
+}
+
+const { 
+  id,
+  title, 
+  objective, 
+  businessFeatures, 
+  techStack, 
+  technicalFeatures, 
+  architecture
+} = Astro.props;
+---
+
+<div class="modal-overlay" id={id}>
+  <div class="modal-content scale-in">
+    <div class="modal-header">
+      <h2>{title}</h2>
+      <button class="close-btn" aria-label="Cerrar modal">×</button>
+    </div>
+    
+    <div class="modal-body">
+      <section class="info-section">
+        <h3>📋 Objetivo del Proyecto</h3>
+        <p class="objective-text">{objective}</p>
+      </section>
+
+      <section class="info-section">
+        <h3>📖 Descripción Detallada</h3>
+        
+        <div class="subsection">
+          <h4>Funcionalidades de Negocio</h4>
+          <ul>
+            {businessFeatures.map((feature) => (
+              <li>{feature}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="subsection">
+          <h4>Stack Tecnológico</h4>
+          <ul>
+            {techStack.map((tech) => (
+              <li>{tech}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="subsection">
+          <h4>Características Técnicas</h4>
+          <ul>
+            {technicalFeatures.map((feature) => (
+              <li>{feature}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="subsection">
+          <h4>Arquitectura</h4>
+          <p class="architecture-text">{architecture}</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ id }}>
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (window.closeModal) window.closeModal();
+    }
+  });
+
+  // Close on backdrop click
+  const overlay = document.getElementById(id);
+  
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      if (window.closeModal) window.closeModal();
+    }
+  });
+
+  // Close on button click
+  const closeBtn = overlay?.querySelector('.close-btn');
+  closeBtn?.addEventListener('click', () => {
+    if (window.closeModal) window.closeModal();
+  });
+</script>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 2rem;
+    overflow-y: auto;
+  }
+
+  .modal-content {
+    background: var(--bg-card, #1a1a2e);
+    border: 1px solid var(--glass-border, rgba(56, 249, 62, 0.2));
+    border-radius: 16px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    position: relative;
+  }
+
+  .modal-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .modal-content::-webkit-scrollbar-track {
+    background: var(--bg-deep, #0d0d1a);
+    border-radius: 4px;
+  }
+
+  .modal-content::-webkit-scrollbar-thumb {
+    background: var(--monster-green, #38F93E);
+    border-radius: 4px;
+  }
+
+  .modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--monster-green, #38F93E);
+    opacity: 0.8;
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes scaleOut {
+    from {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+    }
+  }
+
+  .scale-in {
+    animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .scale-out {
+    animation: scaleOut 0.25s ease-out;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--glass-border, rgba(56, 249, 62, 0.2));
+    position: sticky;
+    top: 0;
+    background: var(--bg-card, #1a1a2e);
+    border-radius: 16px 16px 0 0;
+    z-index: 10;
+  }
+
+  .modal-header h2 {
+    margin: 0;
+    color: var(--monster-green, #38F93E);
+    font-size: 1.5rem;
+    flex: 1;
+  }
+
+  .close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary, #ffffff);
+    font-size: 2rem;
+    line-height: 1;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  .close-btn:hover {
+    background: rgba(56, 249, 62, 0.1);
+    color: var(--monster-green, #38F93E);
+  }
+
+  .modal-body {
+    padding: 2rem;
+  }
+
+  .info-section {
+    margin-bottom: 2rem;
+  }
+
+  .info-section h3 {
+    color: var(--monster-green, #38F93E);
+    font-size: 1.3rem;
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--glass-border, rgba(56, 249, 62, 0.2));
+  }
+
+  .info-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .objective-text {
+    color: var(--text-primary, #ffffff);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .subsection {
+    margin-bottom: 1.5rem;
+  }
+
+  .subsection:last-child {
+    margin-bottom: 0;
+  }
+
+  .subsection h4 {
+    color: var(--monster-green, #38F93E);
+    font-size: 1.1rem;
+    margin: 0 0 0.75rem 0;
+    font-weight: 600;
+  }
+
+  .subsection ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .subsection li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.6rem;
+    color: var(--text-secondary, #a0a0a0);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .subsection li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--monster-green, #38F93E);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .architecture-text {
+    color: var(--text-secondary, #a0a0a0);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .modal-overlay {
+      padding: 1rem;
+    }
+
+    .modal-content {
+      max-height: 95vh;
+      border-radius: 12px;
+    }
+
+    .modal-header {
+      padding: 1rem 1.25rem;
+    }
+
+    .modal-header h2 {
+      font-size: 1.2rem;
+    }
+
+    .close-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+    }
+
+    .modal-body {
+      padding: 1.25rem;
+    }
+
+    .info-section h3 {
+      font-size: 1.15rem;
+    }
+
+    .subsection h4 {
+      font-size: 1rem;
+    }
+
+    .subsection li,
+    .architecture-text {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .modal-header h2 {
+      font-size: 1.1rem;
+    }
+
+    .modal-body {
+      padding: 1rem;
+    }
+
+    .info-section {
+      margin-bottom: 1.5rem;
+    }
+  }
+</style>

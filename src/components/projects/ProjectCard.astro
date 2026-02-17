@@ -5,15 +5,15 @@ interface Props {
   features: string[];
   technologies: string[];
   status: 'completed' | 'in-development' | 'live';
-  link?: string;
+  projectIndex: number;
 }
 
-const { title, description, features, technologies, status, link } = Astro.props;
+const { title, description, features, technologies, status, projectIndex } = Astro.props;
 
 const statusLabels = {
-  completed: 'Completed',
-  'in-development': 'In Development',
-  live: 'Live'
+  completed: 'Completado',
+  'in-development': 'En Desarrollo',
+  live: 'En Producción'
 };
 
 const statusColors = {
@@ -28,10 +28,11 @@ const statusColors = {
     <h3>{title}</h3>
     <span class="project-status" style="background: {statusColors[status]}">{statusLabels[status]}</span>
   </div>
+  
   <p class="project-description">{description}</p>
   
   <div class="project-features">
-    <h4>Key Features</h4>
+    <h4>Características Destacadas</h4>
     <ul>
       {features.map((feature) => (
         <li>{feature}</li>
@@ -40,7 +41,7 @@ const statusColors = {
   </div>
 
   <div class="project-technologies">
-    <h4>Technologies</h4>
+    <h4>Tecnologías</h4>
     <div class="tech-tags">
       {technologies.map((tech) => (
         <span class="tech-tag">{tech}</span>
@@ -48,10 +49,17 @@ const statusColors = {
     </div>
   </div>
 
-  {link && (
-    <a href={link} class="btn-project">View Project</a>
-  )}
+  <button class="btn-view-more" data-project-index={projectIndex}>Ver más</button>
 </div>
+
+<script>
+  document.addEventListener('click', (e) => {
+    if (e.target && e.target.classList.contains('btn-view-more')) {
+      const index = parseInt(e.target.getAttribute('data-project-index') || '0');
+      window.openProjectModal(index);
+    }
+  });
+</script>
 
 <style>
   .project-card {
@@ -151,7 +159,7 @@ const statusColors = {
     color: var(--text-primary);
   }
 
-  .btn-project {
+  .btn-view-more {
     margin-top: auto;
     align-self: flex-start;
     background: var(--gradient-primary);
@@ -160,11 +168,11 @@ const statusColors = {
     border: none;
     border-radius: 50px;
     font-weight: 600;
-    text-decoration: none;
+    cursor: pointer;
     transition: all 0.3s ease;
   }
 
-  .btn-project:hover {
+  .btn-view-more:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px var(--monster-glow-hover);
   }

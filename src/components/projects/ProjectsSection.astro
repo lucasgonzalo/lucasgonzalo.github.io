@@ -1,6 +1,7 @@
 ---
 import { projects } from '../../data/projects';
 import ProjectCard from './ProjectCard.astro';
+import ProjectModal from './ProjectModal.astro';
 ---
 
 <section class="projects-section">
@@ -8,19 +9,58 @@ import ProjectCard from './ProjectCard.astro';
     <h2 id="projects">Projects</h2>
     <p class="section-description">Featured projects showcasing my expertise in full-stack development, from complex enterprise systems to innovative solutions.</p>
     <div class="projects-grid">
-      {projects.map((project) => (
+      {projects.map((project, index) => (
         <ProjectCard
           title={project.title}
           description={project.description}
           features={project.features}
           technologies={project.technologies}
           status={project.status}
-          link={project.link}
+          projectIndex={index}
         />
       ))}
     </div>
   </div>
 </section>
+
+{projects.map((project, index) => (
+  <ProjectModal
+    id={`modal-${index}`}
+    title={project.title}
+    objective={project.objective}
+    businessFeatures={project.businessFeatures}
+    techStack={project.techStack}
+    technicalFeatures={project.technicalFeatures}
+    architecture={project.architecture}
+  />
+))}
+
+<script>
+  window.openProjectModal = (index: number) => {
+    const modal = document.getElementById(`modal-${index}`);
+    if (modal) {
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      const modalContent = modal.querySelector('.modal-content');
+      modalContent?.classList.remove('scale-out');
+      modalContent?.classList.add('scale-in');
+    }
+  };
+
+  window.closeModal = () => {
+    const activeModal = document.querySelector('.modal-overlay[style*="flex"]');
+    if (activeModal) {
+      const modalContent = activeModal.querySelector('.modal-content');
+      modalContent?.classList.remove('scale-in');
+      modalContent?.classList.add('scale-out');
+      
+      setTimeout(() => {
+        activeModal.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 250);
+    }
+  };
+</script>
 
 <style>
   .projects-section {
