@@ -59,9 +59,6 @@ const translations = {
     },
     "languageSwitcher": {
       "title": "Language"
-    },
-    "googleTranslate": {
-      "title": "Auto Translate"
     }
   },
   es: {
@@ -123,9 +120,6 @@ const translations = {
     },
     "languageSwitcher": {
       "title": "Idioma"
-    },
-    "googleTranslate": {
-      "title": "Traducción Automática"
     }
   }
 };
