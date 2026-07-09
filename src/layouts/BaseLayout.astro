@@ -11,6 +11,16 @@ import '../styles/global.css';
 <!DOCTYPE html>
 <html>
 
+  <!-- Head bootstrap: set <html lang> synchronously, before first paint.
+       The heavy translation work runs later from the deferred bundled module
+       (see the <script> near the end of <body>); this tiny inline script only
+       picks the language so dual-render content and CSS see the right locale. -->
+  <script is:inline>
+    (function(){try{var l=localStorage.getItem('language');
+    if(!l){l=(navigator.language||'').startsWith('es')?'es':'en';}
+    document.documentElement.lang=l;}catch(e){document.documentElement.lang='en';}})();
+  </script>
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVXEB8RBHP"></script>
   <script>
@@ -63,8 +73,17 @@ import '../styles/global.css';
   <main><slot /></main>
   <footer><slot name="footer" /></footer>
 
-  <!-- i18n Script -->
-  <script is:inline src="/scripts/i18n.js"></script>
+  <!-- i18n runtime: bundled TS module (src/i18n) is the single source of truth.
+       Deferred (type=module); gated on DOMContentLoaded so component listeners
+       are attached before the init-dispatch of language-changed fires. -->
+  <script>
+    import { initLanguage } from '../i18n';
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLanguage);
+    } else {
+      initLanguage();
+    }
+  </script>
 
   <!-- Bootstrap 5.3.8 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
