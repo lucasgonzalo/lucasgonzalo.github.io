@@ -40,7 +40,9 @@
       "technicalFeatures": "Technical Features",
       "architecture": "Architecture",
       "close": "Close Modal"
-    }
+    },
+    "features": "Key Features",
+    "technologies": "Technologies"
   },
   "contact": {
     "title": "Contact",

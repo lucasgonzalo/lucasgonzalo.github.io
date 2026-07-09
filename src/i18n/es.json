@@ -40,7 +40,9 @@
       "technicalFeatures": "Características Técnicas",
       "architecture": "Arquitectura",
       "close": "Cerrar Modal"
-    }
+    },
+    "features": "Características Destacadas",
+    "technologies": "Tecnologías"
   },
   "contact": {
     "title": "Contacto",
