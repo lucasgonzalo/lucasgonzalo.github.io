@@ -20,17 +20,6 @@ import WorkTimelineCard from './WorkTimelineCard.astro';
   </div>
 </section>
 
-<script>
-  window.addEventListener('language-changed', () => {
-    const t = window.t || ((key) => key);
-    const title = document.querySelector('#experience');
-    if (title) {
-      const key = title.getAttribute('data-i18n');
-      if (key) title.textContent = t(key);
-    }
-  });
-</script>
-
 <style>
   #experience {
     margin: 5rem;
