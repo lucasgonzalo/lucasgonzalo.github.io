@@ -1,8 +1,11 @@
 ---
+import L10nText from '../L10nText.astro';
+import type { L10n } from '../../i18n/types';
+
 interface Props {
-  title: string;
-  description: string;
-  features: string[];
+  title: L10n;
+  description: L10n;
+  features: L10n[];
   technologies: string[];
   status: 'completed' | 'in-development' | 'live';
   projectIndex: number;
@@ -10,13 +13,12 @@ interface Props {
 
 const { title, description, features, technologies, status, projectIndex } = Astro.props;
 
-const statusLabels = {
-  completed: 'Completado',
-  'in-development': 'En Desarrollo',
-  live: 'En Producción'
-};
+// Status enum reconciliation: data uses kebab-case 'in-development' but the i18n
+// key is camelCase 'inDevelopment'. Bridge the mismatch so the badge resolves to
+// the correct localized label (projects.status.completed / live / inDevelopment).
+const statusKey = status === 'in-development' ? 'inDevelopment' : status;
 
-const statusColors = {
+const statusColors: Record<Props['status'], string> = {
   completed: '#00FF66',
   'in-development': '#38F93E',
   live: '#00C853'
@@ -25,23 +27,23 @@ const statusColors = {
 
 <div class="project-card glass fade-in-up">
   <div class="project-header">
-    <h3>{title}</h3>
-    <span class="project-status" style="background: {statusColors[status]}">{statusLabels[status]}</span>
+    <h3><L10nText text={title} /></h3>
+    <span class="project-status" style={`background: ${statusColors[status]}`} data-i18n={`projects.status.${statusKey}`}>{statusKey}</span>
   </div>
-  
-  <p class="project-description">{description}</p>
-  
+
+  <p class="project-description"><L10nText text={description} /></p>
+
   <div class="project-features">
-    <h4>Características Destacadas</h4>
+    <h4 data-i18n="projects.features">Key Features</h4>
     <ul>
       {features.map((feature) => (
-        <li>{feature}</li>
+        <li><L10nText text={feature} /></li>
       ))}
     </ul>
   </div>
 
   <div class="project-technologies">
-    <h4>Tecnologías</h4>
+    <h4 data-i18n="projects.technologies">Technologies</h4>
     <div class="tech-tags">
       {technologies.map((tech) => (
         <span class="tech-tag">{tech}</span>
@@ -49,5 +51,5 @@ const statusColors = {
     </div>
   </div>
 
-  <button class="btn-view-more" data-project-index={projectIndex}>Ver más</button>
+  <button class="btn-view-more" data-project-index={projectIndex} data-i18n="projects.viewMore">View More</button>
 </div>

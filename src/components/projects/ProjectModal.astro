@@ -1,21 +1,24 @@
 ---
+import L10nText from '../L10nText.astro';
+import type { L10n } from '../../i18n/types';
+
 interface Props {
   id: string;
-  title: string;
-  objective: string;
-  businessFeatures: string[];
+  title: L10n;
+  objective: L10n;
+  businessFeatures: L10n[];
   techStack: string[];
-  technicalFeatures: string[];
-  architecture: string;
+  technicalFeatures: L10n[];
+  architecture: L10n;
 }
 
-const { 
+const {
   id,
-  title, 
-  objective, 
-  businessFeatures, 
-  techStack, 
-  technicalFeatures, 
+  title,
+  objective,
+  businessFeatures,
+  techStack,
+  technicalFeatures,
   architecture
 } = Astro.props;
 ---
@@ -23,30 +26,30 @@ const {
 <div class="modal-overlay" id={id}>
   <div class="modal-content scale-in">
     <div class="modal-header">
-      <h2>{title}</h2>
-      <button class="close-btn" aria-label="Cerrar modal" data-i18n="projects.modal.close">×</button>
+      <h2><L10nText text={title} /></h2>
+      <button class="close-btn" aria-label="Close modal" data-i18n="projects.modal.close">×</button>
     </div>
-    
+
     <div class="modal-body">
       <section class="info-section">
-        <h3 data-i18n="projects.modal.objective">📋 Objetivo del Proyecto</h3>
-        <p class="objective-text">{objective}</p>
+        <h3 data-i18n="projects.modal.objective">📋 Project Objective</h3>
+        <p class="objective-text"><L10nText text={objective} /></p>
       </section>
 
       <section class="info-section">
-        <h3 data-i18n="projects.modal.detailedDescription">📖 Descripción Detallada</h3>
-        
+        <h3 data-i18n="projects.modal.detailedDescription">📖 Detailed Description</h3>
+
         <div class="subsection">
-          <h4 data-i18n="projects.modal.businessFeatures">Funcionalidades de Negocio</h4>
+          <h4 data-i18n="projects.modal.businessFeatures">Business Features</h4>
           <ul>
             {businessFeatures.map((feature) => (
-              <li>{feature}</li>
+              <li><L10nText text={feature} /></li>
             ))}
           </ul>
         </div>
 
         <div class="subsection">
-          <h4 data-i18n="projects.modal.techStack">Stack Tecnológico</h4>
+          <h4 data-i18n="projects.modal.techStack">Tech Stack</h4>
           <ul>
             {techStack.map((tech) => (
               <li>{tech}</li>
@@ -55,17 +58,17 @@ const {
         </div>
 
         <div class="subsection">
-          <h4 data-i18n="projects.modal.technicalFeatures">Características Técnicas</h4>
+          <h4 data-i18n="projects.modal.technicalFeatures">Technical Features</h4>
           <ul>
             {technicalFeatures.map((feature) => (
-              <li>{feature}</li>
+              <li><L10nText text={feature} /></li>
             ))}
           </ul>
         </div>
 
         <div class="subsection">
-          <h4 data-i18n="projects.modal.architecture">Arquitectura</h4>
-          <p class="architecture-text">{architecture}</p>
+          <h4 data-i18n="projects.modal.architecture">Architecture</h4>
+          <p class="architecture-text"><L10nText text={architecture} /></p>
         </div>
       </section>
     </div>
@@ -82,7 +85,7 @@ const {
 
   // Close on backdrop click
   const overlay = document.getElementById(id);
-  
+
   overlay?.addEventListener('click', (e) => {
     if (e.target === overlay) {
       if (window.closeModal) window.closeModal();
@@ -95,14 +98,17 @@ const {
     if (window.closeModal) window.closeModal();
   });
 
-  // Update translations on language change
+  // Re-apply translations on language change — the global translateAll() owns
+  // plain [data-i18n] elements, but two modal section headers carry emoji
+  // prefixes (📋 / 📖) that translateAll's textContent assignment would wipe.
+  // This listener re-prepends the emoji after the global translator runs.
   window.addEventListener('language-changed', () => {
     updateModalText();
   });
 
   function updateModalText() {
     const t = window.t || ((key) => key);
-    
+
     if (overlay) {
       overlay.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
