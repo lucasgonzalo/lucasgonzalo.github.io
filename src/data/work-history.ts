@@ -27,7 +27,7 @@ export const workHistory: WorkHistory[] = [
       },
       {
         en: 'Collaborated in cross-functional teams to design and implement database architectures and system solutions',
-        es: 'Colaboré en equipos multifuncionales para diseñar e implementar arquitecturas de bases de datos y soluciones de sistema'
+        es: 'Colaboré en equipos multifuncionales para diseñar e implementar arquitecturas de bases de datos y soluciones de sistemas'
       }
     ]
   },
@@ -46,7 +46,7 @@ export const workHistory: WorkHistory[] = [
       },
       {
         en: 'Analytics implementation and monitoring for performance optimization',
-        es: 'Implementación de analítica y monitorización para la optimización del rendimiento'
+        es: 'Implementación de analítica y monitoreo para la optimización del rendimiento'
       },
       {
         en: 'Complete project management including publicity, marketing, and client relations',
