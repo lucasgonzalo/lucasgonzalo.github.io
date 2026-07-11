@@ -1,8 +1,11 @@
 ---
+import L10nText from '../L10nText.astro';
+import type { L10n } from '../../i18n/types';
+
 interface Props {
   icon: string;
-  name: string;
-  description: string;
+  name: L10n;
+  description: L10n;
 }
 
 const { icon, name, description } = Astro.props;
@@ -10,8 +13,8 @@ const { icon, name, description } = Astro.props;
 
 <div class="skill-card glass">
   <i class={`skill-icon ${icon}`}></i>
-  <span>{name} <i class="fas fa-chevron-down expand-icon"></i></span>
-  <div class="skill-description">{description}</div>
+  <span><L10nText text={name} /> <i class="fas fa-chevron-down expand-icon"></i></span>
+  <div class="skill-description"><L10nText text={description} /></div>
 </div>
 
 <style>
