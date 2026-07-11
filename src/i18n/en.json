@@ -60,5 +60,9 @@
   },
   "footer": {
     "copyright": "All Rights Reserved."
+  },
+  "meta": {
+    "title": "Lucas GAM - Software Developer",
+    "description": "Lucas Abregú Maradona - Full-Stack Ruby on Rails Developer with 4 years of experience building robust web applications"
   }
 }

@@ -81,6 +81,24 @@ import '../styles/global.css';
        defensive for any non-standard load timing. -->
   <script>
     import { initLanguage } from '../i18n';
+
+    // Bilingual document head: <title> and <meta description> live in <head>,
+    // so they cannot use the CSS dual-render toggle. Instead we update them on
+    // every language-changed event (including the init dispatch) via window.t.
+    // The listener is registered BEFORE initLanguage() so the init-dispatch is
+    // caught; the SSG <title>/<meta> render the EN default until the deferred
+    // module fires (same minimal-chrome-FOUC tradeoff documented in the design).
+    function updateDocumentHead() {
+      const t = window.t || ((key) => key);
+      document.title = t('meta.title');
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', t('meta.description'));
+      }
+    }
+
+    window.addEventListener('language-changed', updateDocumentHead);
+
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initLanguage);
     } else {
