@@ -74,8 +74,11 @@ import '../styles/global.css';
   <footer><slot name="footer" /></footer>
 
   <!-- i18n runtime: bundled TS module (src/i18n) is the single source of truth.
-       Deferred (type=module); gated on DOMContentLoaded so component listeners
-       are attached before the init-dispatch of language-changed fires. -->
+       As a deferred (type=module) script it executes after the document is
+       parsed (readyState 'interactive'), so initLanguage() runs directly and
+       every [data-i18n] node + component listener from the parsed DOM is ready
+       for the init-dispatch of language-changed. The readyState guard is
+       defensive for any non-standard load timing. -->
   <script>
     import { initLanguage } from '../i18n';
     if (document.readyState === 'loading') {

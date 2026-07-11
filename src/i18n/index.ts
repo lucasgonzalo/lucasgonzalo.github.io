@@ -96,7 +96,8 @@ export function setLanguage(lang: Language): void {
  * the active language, set `<html lang>`, translate all chrome NOW, and
  * dispatch `language-changed` once so component-specific subscribers
  * (placeholders, modal emoji) sync on first paint. Called from the deferred
- * bundled entry in `BaseLayout.astro` (gated on `DOMContentLoaded`).
+ * bundled entry in `BaseLayout.astro` (runs post-parse at readyState
+ * 'interactive', so all parsed nodes/listeners exist).
  */
 export function initLanguage(): void {
   if (!isBrowser) {
