@@ -1,9 +1,12 @@
 ---
+import L10nText from '../L10nText.astro';
+import type { L10n } from '../../i18n/types';
+
 interface Props {
   company: string;
-  role: string;
+  role: L10n;
   period: string;
-  description: string[];
+  description: L10n[];
   isCurrent?: boolean;
 }
 
@@ -15,11 +18,11 @@ const { company, role, period, description, isCurrent } = Astro.props;
     <div class="timeline-header">
       <div class="timeline-period">{period}</div>
       <div class="timeline-company">{company}</div>
-      <div class="timeline-role">{role}</div>
+      <div class="timeline-role"><L10nText text={role} /></div>
     </div>
     <ul class="timeline-description">
       {description.map((item) => (
-        <li>{item}</li>
+        <li><L10nText text={item} /></li>
       ))}
     </ul>
   </div>
