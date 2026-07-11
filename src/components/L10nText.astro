@@ -1,0 +1,23 @@
+---
+import type { L10n } from '../i18n/types';
+
+/**
+ * The ONLY content-render primitive for bilingual data. Emits BOTH locales at
+ * build time (SSG-safe — never reads `window`); CSS keyed on `html[lang]`
+ * hides the inactive locale. This makes locale switching a pure-CSS operation
+ * with zero content flash, because the head bootstrap sets `<html lang>`
+ * synchronously before first paint.
+ *
+ * Both tags are emitted on one line with no whitespace between them so inline
+ * contexts don't pick up a stray space.
+ */
+interface Props {
+  text: L10n;
+  tag?: 'span' | 'div' | 'li' | 'p' | 'h3' | 'h4';
+}
+
+const { text, tag = 'span' } = Astro.props;
+const Tag = tag;
+---
+
+<Tag data-l10n="en">{text.en}</Tag><Tag data-l10n="es">{text.es}</Tag>

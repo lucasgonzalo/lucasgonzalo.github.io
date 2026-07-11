@@ -1,7 +1,11 @@
 import en from './en.json';
 import es from './es.json';
+import type { Language } from './types';
 
-export type Language = 'en' | 'es';
+// Re-export so existing `import { Language } from '../i18n'` callers resolve
+// to the single canonical definition in `./types`.
+export type { Language } from './types';
+export type { L10n } from './types';
 export type Translations = typeof en;
 
 export const translations = { en, es };

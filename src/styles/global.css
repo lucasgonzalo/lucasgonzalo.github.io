@@ -123,6 +123,17 @@ h2 {
   }
 }
 
+/* Bilingual content dual-render: both locales are present in the DOM at build
+   time (see <L10nText>); only the active one — chosen by <html lang>, set
+   synchronously by the head bootstrap before first paint — is shown. This makes
+   locale switching a pure-CSS operation (zero JS, zero content flash). */
+html[lang='en'] [data-l10n='es'] {
+  display: none !important;
+}
+html[lang='es'] [data-l10n='en'] {
+  display: none !important;
+}
+
 /* Fade-in animation utility */
 @keyframes fadeInUp {
   from {
