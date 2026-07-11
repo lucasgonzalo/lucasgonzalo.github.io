@@ -57,5 +57,8 @@
   },
   "languageSwitcher": {
     "title": "Idioma"
+  },
+  "footer": {
+    "copyright": "Todos los derechos reservados."
   }
 }
