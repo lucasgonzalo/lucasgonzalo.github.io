@@ -5,7 +5,7 @@ import SkillCard from './SkillCard.astro';
 
 <section class="skills-section">
   <div class="container">
-    <h2 id="skills" data-i18n="skills.title">Technologies</h2>
+    <h2 class="section-title" id="skills" data-i18n="skills.title">Technologies</h2>
     <div class="skills-grid">
       {skills.map((skill) => (
         <SkillCard
@@ -29,22 +29,6 @@ import SkillCard from './SkillCard.astro';
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin-top: 1rem;
-  }
-
-  h2 {
-    position: relative;
-    display: inline-block;
-  }
-
-  h2::after {
-    content: '';
-    position: absolute;
-    bottom: -0.5rem;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: var(--gradient-primary);
-    border-radius: 2px;
   }
 
   @media (max-width: 992px) {

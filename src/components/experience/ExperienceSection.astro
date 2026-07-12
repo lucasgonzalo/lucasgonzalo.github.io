@@ -5,7 +5,7 @@ import WorkTimelineCard from './WorkTimelineCard.astro';
 
 <section>
   <div class="container">
-    <h2 id="experience" data-i18n="experience.title">Work Experience</h2>
+    <h2 class="section-title" id="experience" data-i18n="experience.title">Work Experience</h2>
     <div class="timeline-container">
       {workHistory.map((work) => (
         <WorkTimelineCard
@@ -30,20 +30,7 @@ import WorkTimelineCard from './WorkTimelineCard.astro';
   }
 
   h2 {
-    position: relative;
-    display: inline-block;
     margin-bottom: 1rem;
-  }
-
-  h2::after {
-    content: '';
-    position: absolute;
-    bottom: -0.5rem;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: var(--gradient-primary);
-    border-radius: 2px;
   }
 
   @media (max-width: 768px) {

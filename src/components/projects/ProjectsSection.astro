@@ -6,7 +6,7 @@ import ProjectModal from './ProjectModal.astro';
 
 <section class="projects-section">
   <div class="container">
-    <h2 id="projects" data-i18n="projects.title">Projects</h2>
+    <h2 class="section-title" id="projects" data-i18n="projects.title">Projects</h2>
     <p class="section-description" data-i18n="projects.description">Featured projects showcasing my expertise in full-stack development, from complex enterprise systems to innovative solutions.</p>
     <div class="projects-grid">
       {projects.map((project, index) => (
@@ -80,20 +80,7 @@ import ProjectModal from './ProjectModal.astro';
   }
 
   h2 {
-    position: relative;
-    display: inline-block;
     margin-bottom: 1rem;
-  }
-
-  h2::after {
-    content: '';
-    position: absolute;
-    bottom: -0.5rem;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: var(--gradient-primary);
-    border-radius: 2px;
   }
 
   @media (max-width: 992px) {

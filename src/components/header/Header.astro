@@ -48,32 +48,6 @@ import LanguageSwitcher from '../LanguageSwitcher.astro';
     margin: 0;
   }
 
-  .logo-text {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    position: relative;
-    display: inline-block;
-    animation: breathe 4s ease-in-out infinite;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  @keyframes breathe {
-    0%, 100% {
-      text-shadow:
-        0 0 10px var(--monster-glow),
-        0 0 20px rgba(56, 249, 62, 0.2);
-    }
-    50% {
-      text-shadow:
-        0 0 15px var(--monster-glow),
-        0 0 30px rgba(56, 249, 62, 0.15);
-    }
-  }
-
   .logo-text:hover {
     transform: scale(1.05);
     text-shadow:
