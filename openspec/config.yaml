@@ -1,0 +1,67 @@
+# OpenSpec / SDD configuration for lucasgonzalo.github.io
+schema: spec-driven
+
+project:
+  name: lucasgonzalo.github.io
+  package: retrograde-ring
+  repo: https://github.com/lucasgonzalo/lucasgonzalo.github.io
+  site: https://lucasgonzalo.github.io
+
+context: |
+  Stack: Astro 5.16.15 (ESM, single-page), TypeScript strict, Bootstrap 5.3.8, @popperjs/core.
+  Architecture: Static single-page portfolio, no Astro i18n integration, no locale routing.
+  i18n: Manual ES/EN across 3 divergent sources (src/i18n JSON, src/scripts/i18n.js, public/scripts/i18n.js)
+        plus a Google Translate widget. Content data (src/data/*.ts) is hardcoded Spanish.
+  Testing: NONE — no test runner, no config, no tests, no linter/formatter/typecheck.
+  Deploy: GitHub Actions (withastro/action@v5, Node 22) to GitHub Pages, main branch.
+
+strict_tdd: false   # No test runner present. Strict TDD is NOT active until one is installed.
+
+execution_mode: interactive
+delivery_strategy: ask-always
+review_budget_lines: 400
+
+testing:
+  runner: none
+  framework: none
+  layers:
+    unit: false
+    integration: false
+    e2e: false
+  coverage:
+    available: false
+    command: ""
+  quality:
+    linter: false
+    type_checker: false   # tsconfig strict exists but no `astro check` script
+    formatter: false
+
+rules:
+  proposal:
+    - Include rollback plan (git revert + redeploy) since deploy is GitHub Pages on main push.
+    - Call out the 3 i18n sources explicitly when scoping i18n changes.
+  specs:
+    - Use Given/When/Then for scenarios.
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY).
+    - Cover both ES and EN for every translatable string.
+  design:
+    - Document which i18n source becomes the single source of truth and why.
+    - Specify how translatable content data (projects/skills/experience) is restructured.
+  tasks:
+    - Group by phase, use hierarchical numbering.
+    - Keep tasks completable in one session.
+    - Flag tasks that need hand-written translations (no auto-translation).
+  apply:
+    - Follow existing Astro component organization (domain folders under src/components/).
+    - ESM only (no CommonJS `require` — current src/scripts/i18n-client.ts uses require and is a latent bug).
+    tdd: false
+    test_command: ""
+    build_command: "npm run build"
+  verify:
+    test_command: ""
+    build_command: "npm run build"
+    coverage_threshold: 0
+    manual_checks_required: true   # No automated tests; verify via build + manual language switch.
+  archive:
+    - Warn before merging destructive deltas.
+    - Confirm dead i18n sources are fully removed after archive.
