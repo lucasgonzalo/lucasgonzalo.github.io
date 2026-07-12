@@ -58,7 +58,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Customer management (individuals and legal entities) with business information validation',
-        es: 'Gestión de clientes (personas naturales y jurídicas) con validación de información comercial'
+        es: 'Gestión de clientes (personas físicas y jurídicas) con validación de información comercial'
       },
       {
         en: 'Sampling, receiving, and transfer processes between locations',
@@ -66,7 +66,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Management of vouchers, conditionals, recoveries, and returns',
-        es: 'Gestión de bonos, condicionales, recuperas y devoluciones'
+        es: 'Gestión de bonos, condicionales, recuperos y devoluciones'
       },
       {
         en: 'Invoicing and payment management',
@@ -91,11 +91,11 @@ export const projects: Project[] = [
       },
       {
         en: 'Sidekiq for asynchronous background job processing',
-        es: 'Sidekiq para procesamiento asíncrono de jobs en background'
+        es: 'Sidekiq para procesamiento asíncrono de trabajos en segundo plano'
       },
       {
         en: 'Query optimization with eager loading (includes, joins, preload)',
-        es: 'Optimización de queries con eager loading (includes, joins, preload)'
+        es: 'Optimización de consultas con eager loading (includes, joins, preload)'
       },
       {
         en: 'Service Objects pattern for complex business logic',
@@ -272,11 +272,11 @@ export const projects: Project[] = [
       },
       {
         en: 'Kanban boards with stages where Cards are managed via drag & drop',
-        es: 'Tableros Kanban con stages donde se gestionan Cards con drag & drop'
+        es: 'Tableros Kanban con etapas donde se gestionan tarjetas con drag & drop'
       },
       {
         en: 'Activity management: calls, meetings, and showrooms with an integrated calendar',
-        es: 'Gestión de actividades: llamadas, reuniones y show rooms con calendario integrado'
+        es: 'Gestión de actividades: llamadas, reuniones y salas de exhibición con calendario integrado'
       },
       {
         en: 'Multi-tenant: support for multiple companies with isolated data',
@@ -313,15 +313,15 @@ export const projects: Project[] = [
       },
       {
         en: 'Automatic broadcasting on models (cards, notifications, activities, messages)',
-        es: 'Broadcasting automático en modelos (cards, notificaciones, actividades, mensajes)'
+        es: 'Broadcasting automático en modelos (tarjetas, notificaciones, actividades, mensajes)'
       },
       {
         en: 'Multi-tenant architecture with Partner as the root entity',
-        es: 'Multi-tenant architecture con Partner como entidad raíz'
+        es: 'Arquitectura multi-tenant con Partner como entidad raíz'
       },
       {
         en: 'Query optimization with strategic eager loading',
-        es: 'Optimización de queries con eager loading estratégico'
+        es: 'Optimización de consultas con eager loading estratégico'
       },
       {
         en: 'Command pattern with SimpleCommand for business logic',
@@ -405,7 +405,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Student progress system with per-activity tracking',
-        es: 'Sistema de progreso del estudiante con tracking de cada actividad'
+        es: 'Sistema de progreso del estudiante con seguimiento de cada actividad'
       },
       {
         en: 'License system with unique keys',
@@ -430,7 +430,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Vimeo API for video streaming and live streams',
-        es: 'Vimeo API para streaming de videos y live streams'
+        es: 'Vimeo API para streaming de videos y transmisiones en vivo'
       },
       {
         en: 'ImageMagick + MiniMagick for image processing',
@@ -454,11 +454,11 @@ export const projects: Project[] = [
       },
       {
         en: 'Course versioning system (levels 1-3)',
-        es: 'Sistema de versiones de cursos (levels 1-3)'
+        es: 'Sistema de versiones de cursos (niveles 1-3)'
       },
       {
         en: 'Hierarchical structure: Play → Section → Subsection',
-        es: 'Estructura jerárquica: Play → Section → Subsection'
+        es: 'Estructura jerárquica: Obra → Sección → Subsección'
       },
       {
         en: 'Geolocation with Geocoder',
@@ -466,7 +466,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Multiple currencies with differentiated pricing by country',
-        es: 'Multiple monedas con precios diferenciados por país'
+        es: 'Múltiples monedas con precios diferenciados por país'
       }
     ],
     architecture: {
@@ -530,7 +530,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Temporary card locking during checkout',
-        es: 'Bloqueo temporal de cartones durante checkout'
+        es: 'Bloqueo temporal de cartones durante la compra'
       },
       {
         en: 'Automatic release of expired carts',
@@ -550,12 +550,12 @@ export const projects: Project[] = [
     ],
     technicalFeatures: [
       {
-        en: 'Action Cable + Redis for real-time WebSockets',
-        es: 'Action Cable + Redis para WebSockets en tiempo real'
+        en: 'ActionCable + Redis for real-time WebSockets',
+        es: 'ActionCable + Redis para WebSockets en tiempo real'
       },
       {
         en: 'Local payment gateway SDK',
-        es: 'Pasarela de pagos local SDK'
+        es: 'SDK de la pasarela de pagos local'
       },
       {
         en: 'Clockwork for scheduled tasks every 5 minutes',
@@ -575,7 +575,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Query optimization with includes for eager loading',
-        es: 'Optimización de queries con includes para eager loading'
+        es: 'Optimización de consultas con includes para eager loading'
       },
       {
         en: 'RESTful API for mobile app with JWT authentication',
@@ -592,7 +592,7 @@ export const projects: Project[] = [
     ],
     architecture: {
       en: 'Real-time architecture with WebSockets, an optimized concurrency system, and background processing with multiple workers.',
-      es: 'Arquitectura de tiempo real con WebSockets, sistema de concurrencia optimizado, procesamiento en background con múltiples workers'
+      es: 'Arquitectura de tiempo real con WebSockets, sistema de concurrencia optimizado, procesamiento en segundo plano con múltiples workers'
     }
   },
   {
@@ -672,11 +672,11 @@ export const projects: Project[] = [
     technicalFeatures: [
       {
         en: 'Sidekiq + Sidekiq-Cron for background jobs with automatic periodic tasks',
-        es: 'Sidekiq + Sidekiq-Cron para jobs en background con tareas periódicas automáticas'
+        es: 'Sidekiq + Sidekiq-Cron para trabajos en segundo plano con tareas periódicas automáticas'
       },
       {
-        en: 'Action Cable + Hotwire/Turbo + Redis for real-time updates',
-        es: 'Action Cable + Hotwire/Turbo + Redis para tiempo real'
+        en: 'ActionCable + Hotwire/Turbo + Redis for real-time updates',
+        es: 'ActionCable + Hotwire/Turbo + Redis para tiempo real'
       },
       {
         en: 'Sophisticated algorithm for tie handling in rankings',
@@ -684,7 +684,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Complex SQL with joins, group by, and subqueries for ranking calculations',
-        es: 'SQL complejo con joins, group by, subconsultas para cálculos de rankings'
+        es: 'Consultas SQL complejas con joins, group by y subconsultas para cálculos de rankings'
       },
       {
         en: 'Periodic tasks for automatic auction opening/closing',
@@ -692,7 +692,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Local payment gateway SDK with webhooks',
-        es: 'Pasarela de pagos local SDK con webhooks'
+        es: 'SDK de la pasarela de pagos local con webhooks'
       },
       {
         en: 'Audit system with Audited',
@@ -808,7 +808,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Memory Monitoring with RAM tracking during processing',
-        es: 'Memory Monitoring con tracking de RAM durante procesamiento'
+        es: 'Memory Monitoring con seguimiento de RAM durante el procesamiento'
       },
       {
         en: 'Helper Pattern to centralize the database connection',
@@ -816,7 +816,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Complex SQL queries with multiple JOINs, subqueries, and window functions',
-        es: 'Queries SQL complejas con múltiples JOINs, subconsultas, window functions'
+        es: 'Consultas SQL complejas con múltiples JOINs, subconsultas y window functions'
       },
       {
         en: 'Stream Response with the Excel generated in memory and returned over HTTP',
@@ -829,7 +829,7 @@ export const projects: Project[] = [
     ],
     architecture: {
       en: 'Serverless architecture optimized for performance with efficient design patterns (batching, write-only, memory monitoring) and a modular architecture with independent HTTP endpoints.',
-      es: 'Arquitectura serverless optimizada para performance con patrones de diseño eficientes (batching, write-only, memory monitoring), arquitectura modular con endpoints HTTP independientes'
+      es: 'Arquitectura serverless optimizada para rendimiento con patrones de diseño eficientes (batching, write-only, memory monitoring), arquitectura modular con endpoints HTTP independientes'
     }
   },
   {
@@ -905,11 +905,11 @@ export const projects: Project[] = [
       },
       {
         en: 'AsyncPG for the asynchronous PostgreSQL driver',
-        es: 'AsyncPG para driver asíncrono PostgreSQL'
+        es: 'AsyncPG para driver asíncrono de PostgreSQL'
       },
       {
         en: 'Psycopg2 for the synchronous PostgreSQL driver',
-        es: 'Psycopg2 para driver síncrono PostgreSQL'
+        es: 'Psycopg2 para driver síncrono de PostgreSQL'
       },
       {
         en: 'Pandas for data manipulation',
@@ -937,7 +937,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Batch processing (default: 1000 rows)',
-        es: 'Batch processing (default: 1000 filas)'
+        es: 'Batch processing (valor por defecto: 1000 filas)'
       },
       {
         en: 'Concurrency control with asyncio.Semaphore(10)',
@@ -1046,15 +1046,15 @@ export const projects: Project[] = [
       },
       {
         en: 'AsyncPG for the asynchronous PostgreSQL driver',
-        es: 'AsyncPG para driver asíncrono PostgreSQL'
+        es: 'AsyncPG para driver asíncrono de PostgreSQL'
       },
       {
         en: 'APScheduler for a cron-like task scheduling system',
-        es: 'APScheduler para sistema de programación de tareas cron-like'
+        es: 'APScheduler para sistema de programación de tareas tipo cron'
       },
       {
         en: 'Asynchronous programming with controlled concurrency (50 requests by default)',
-        es: 'Programación asíncrona con concurrencia controlada (50 requests por defecto)'
+        es: 'Programación asíncrona con concurrencia controlada (50 peticiones por defecto)'
       },
       {
         en: 'Batch processing of 1000 records for memory management',
@@ -1113,11 +1113,11 @@ export const projects: Project[] = [
     },
     description: {
       en: 'A modern, performance-optimized corporate website for a software development and technology consulting company.',
-      es: 'Sitio web corporativo moderno y optimizado para performance de una empresa de desarrollo de software y consultoría tecnológica.'
+      es: 'Sitio web corporativo moderno y optimizado para rendimiento de una empresa de desarrollo de software y consultoría tecnológica.'
     },
     objective: {
       en: 'A modern, performance-optimized corporate website for a software development and technology consulting company.',
-      es: 'Sitio web corporativo moderno y optimizado para performance de una empresa de desarrollo de software y consultoría tecnológica.'
+      es: 'Sitio web corporativo moderno y optimizado para rendimiento de una empresa de desarrollo de software y consultoría tecnológica.'
     },
     features: [
       {
@@ -1134,7 +1134,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Performance optimization for fast loading',
-        es: 'Optimización de performance para carga rápida'
+        es: 'Optimización de rendimiento para carga rápida'
       }
     ],
     technologies: ['Astro 5.7.12', 'TypeScript', 'Tailwind CSS 4.1.6', 'GitLab Pages', 'Google Tag Manager', 'FormSubmit', 'Google reCAPTCHA'],
@@ -1170,7 +1170,7 @@ export const projects: Project[] = [
     technicalFeatures: [
       {
         en: 'Astro 5 modern framework optimized for performance and static content',
-        es: 'Astro 5 framework moderno optimizado para performance y contenido estático'
+        es: 'Astro 5 framework moderno optimizado para rendimiento y contenido estático'
       },
       {
         en: 'Tailwind CSS 4 utility-first design system',
@@ -1210,7 +1210,7 @@ export const projects: Project[] = [
       },
       {
         en: 'FormSubmit.co for serverless form handling',
-        es: 'FormSubmit.co para backend-less de formularios'
+        es: 'FormSubmit.co para gestión de formularios sin servidor'
       },
       {
         en: 'Google reCAPTCHA v2 for anti-spam protection',
@@ -1230,7 +1230,7 @@ export const projects: Project[] = [
       },
       {
         en: 'Mobile-first responsive design with sticky navbar and hamburger menu',
-        es: 'Responsive móvil-first con sticky navbar y menú hamburguesa'
+        es: 'Responsive móvil-first con barra de navegación fija y menú hamburguesa'
       },
       {
         en: 'Fade-in animations and smooth CSS transitions',
@@ -1239,7 +1239,7 @@ export const projects: Project[] = [
     ],
     architecture: {
       en: 'Optimized static site architecture with reactive componentization using Astro and a static-generation build process for maximum performance.',
-      es: 'Arquitectura de sitios estáticos optimizados con Componentización Reactiva con Astro, Build process con static generation para máximo rendimiento'
+      es: 'Arquitectura de sitios estáticos optimizados con Componentización Reactiva con Astro, proceso de construcción con generación estática para máximo rendimiento'
     }
   }
 ];
