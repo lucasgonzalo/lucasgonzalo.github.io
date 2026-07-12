@@ -27,7 +27,7 @@ const {
   <div class="modal-content scale-in">
     <div class="modal-header">
       <h2><L10nText text={title} /></h2>
-      <button class="close-btn" aria-label="Close modal" data-i18n="projects.modal.close">×</button>
+      <button class="close-btn" type="button" aria-label="Close Modal" data-i18n-aria="projects.modal.close">×</button>
     </div>
 
     <div class="modal-body">
@@ -102,6 +102,9 @@ const {
   // plain [data-i18n] elements, but two modal section headers carry emoji
   // prefixes (📋 / 📖) that translateAll's textContent assignment would wipe.
   // This listener re-prepends the emoji after the global translator runs.
+  // It also localizes aria-labels via [data-i18n-aria] — kept separate from
+  // [data-i18n] so the global translator never sets textContent on the close
+  // button (which would overwrite the visible × icon).
   window.addEventListener('language-changed', () => {
     updateModalText();
   });
@@ -121,6 +124,14 @@ const {
           } else {
             el.textContent = translation;
           }
+        }
+      });
+
+      // Localize aria-labels without touching visible content.
+      overlay.querySelectorAll('[data-i18n-aria]').forEach(el => {
+        const key = el.getAttribute('data-i18n-aria');
+        if (key) {
+          el.setAttribute('aria-label', t(key));
         }
       });
     }
