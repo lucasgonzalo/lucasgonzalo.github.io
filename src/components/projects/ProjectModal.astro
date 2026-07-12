@@ -5,7 +5,6 @@ import type { L10n } from '../../i18n/types';
 interface Props {
   id: string;
   title: L10n;
-  objective: L10n;
   businessFeatures: L10n[];
   techStack: string[];
   technicalFeatures: L10n[];
@@ -15,7 +14,6 @@ interface Props {
 const {
   id,
   title,
-  objective,
   businessFeatures,
   techStack,
   technicalFeatures,
@@ -31,11 +29,6 @@ const {
     </div>
 
     <div class="modal-body">
-      <section class="info-section">
-        <h3 data-i18n="projects.modal.objective">📋 Project Objective</h3>
-        <p class="objective-text"><L10nText text={objective} /></p>
-      </section>
-
       <section class="info-section">
         <h3 data-i18n="projects.modal.detailedDescription">📖 Detailed Description</h3>
 
@@ -99,8 +92,8 @@ const {
   });
 
   // Re-apply translations on language change — the global translateAll() owns
-  // plain [data-i18n] elements, but two modal section headers carry emoji
-  // prefixes (📋 / 📖) that translateAll's textContent assignment would wipe.
+  // plain [data-i18n] elements, but the "Detailed Description" header carries
+  // an emoji prefix (📖) that translateAll's textContent assignment would wipe.
   // This listener re-prepends the emoji after the global translator runs.
   // It also localizes aria-labels via [data-i18n-aria] — kept separate from
   // [data-i18n] so the global translator never sets textContent on the close
@@ -117,9 +110,7 @@ const {
         const key = el.getAttribute('data-i18n');
         if (key) {
           const translation = t(key);
-          if (key === 'projects.modal.objective') {
-            el.textContent = '📋 ' + translation;
-          } else if (key === 'projects.modal.detailedDescription') {
+          if (key === 'projects.modal.detailedDescription') {
             el.textContent = '📖 ' + translation;
           } else {
             el.textContent = translation;
@@ -279,13 +270,6 @@ const {
 
   .info-section:last-child {
     margin-bottom: 0;
-  }
-
-  .objective-text {
-    color: var(--text-primary);
-    font-size: 1rem;
-    line-height: 1.7;
-    margin: 0;
   }
 
   .subsection {

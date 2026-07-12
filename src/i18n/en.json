@@ -33,7 +33,6 @@
       "inDevelopment": "In Development"
     },
     "modal": {
-      "objective": "Project Objective",
       "detailedDescription": "Detailed Description",
       "businessFeatures": "Business Features",
       "techStack": "Tech Stack",
