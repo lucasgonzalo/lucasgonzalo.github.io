@@ -27,7 +27,6 @@ import ProjectModal from './ProjectModal.astro';
   <ProjectModal
     id={`modal-${index}`}
     title={project.title}
-    objective={project.objective}
     businessFeatures={project.businessFeatures}
     techStack={project.techStack}
     technicalFeatures={project.technicalFeatures}
@@ -60,17 +59,6 @@ import ProjectModal from './ProjectModal.astro';
       }, 250);
     }
   };
-
-  window.addEventListener('language-changed', () => {
-    const t = window.t || ((key) => key);
-    
-    document.querySelectorAll('.projects-section [data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (key) {
-        el.textContent = t(key);
-      }
-    });
-  });
 </script>
 
 <style>

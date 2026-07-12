@@ -18,17 +18,6 @@ import SkillCard from './SkillCard.astro';
   </div>
 </section>
 
-<script>
-  window.addEventListener('language-changed', () => {
-    const t = window.t || ((key) => key);
-    const title = document.querySelector('#skills');
-    if (title) {
-      const key = title.getAttribute('data-i18n');
-      if (key) title.textContent = t(key);
-    }
-  });
-</script>
-
 <style>
   .skills-section {
     text-align: center;

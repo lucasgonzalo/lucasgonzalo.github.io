@@ -1,21 +1,22 @@
 ---
+import L10nText from '../L10nText.astro';
+import type { L10n } from '../../i18n/types';
+
 interface Props {
   id: string;
-  title: string;
-  objective: string;
-  businessFeatures: string[];
+  title: L10n;
+  businessFeatures: L10n[];
   techStack: string[];
-  technicalFeatures: string[];
-  architecture: string;
+  technicalFeatures: L10n[];
+  architecture: L10n;
 }
 
-const { 
+const {
   id,
-  title, 
-  objective, 
-  businessFeatures, 
-  techStack, 
-  technicalFeatures, 
+  title,
+  businessFeatures,
+  techStack,
+  technicalFeatures,
   architecture
 } = Astro.props;
 ---
@@ -23,30 +24,25 @@ const {
 <div class="modal-overlay" id={id}>
   <div class="modal-content scale-in">
     <div class="modal-header">
-      <h2>{title}</h2>
-      <button class="close-btn" aria-label="Cerrar modal" data-i18n="projects.modal.close">×</button>
+      <h2><L10nText text={title} /></h2>
+      <button class="close-btn" type="button" aria-label="Close Modal" data-i18n-aria="projects.modal.close">×</button>
     </div>
-    
+
     <div class="modal-body">
       <section class="info-section">
-        <h3 data-i18n="projects.modal.objective">📋 Objetivo del Proyecto</h3>
-        <p class="objective-text">{objective}</p>
-      </section>
+        <h3 data-i18n="projects.modal.detailedDescription">📖 Detailed Description</h3>
 
-      <section class="info-section">
-        <h3 data-i18n="projects.modal.detailedDescription">📖 Descripción Detallada</h3>
-        
         <div class="subsection">
-          <h4 data-i18n="projects.modal.businessFeatures">Funcionalidades de Negocio</h4>
+          <h4 data-i18n="projects.modal.businessFeatures">Business Features</h4>
           <ul>
             {businessFeatures.map((feature) => (
-              <li>{feature}</li>
+              <li><L10nText text={feature} /></li>
             ))}
           </ul>
         </div>
 
         <div class="subsection">
-          <h4 data-i18n="projects.modal.techStack">Stack Tecnológico</h4>
+          <h4 data-i18n="projects.modal.techStack">Tech Stack</h4>
           <ul>
             {techStack.map((tech) => (
               <li>{tech}</li>
@@ -55,17 +51,17 @@ const {
         </div>
 
         <div class="subsection">
-          <h4 data-i18n="projects.modal.technicalFeatures">Características Técnicas</h4>
+          <h4 data-i18n="projects.modal.technicalFeatures">Technical Features</h4>
           <ul>
             {technicalFeatures.map((feature) => (
-              <li>{feature}</li>
+              <li><L10nText text={feature} /></li>
             ))}
           </ul>
         </div>
 
         <div class="subsection">
-          <h4 data-i18n="projects.modal.architecture">Arquitectura</h4>
-          <p class="architecture-text">{architecture}</p>
+          <h4 data-i18n="projects.modal.architecture">Architecture</h4>
+          <p class="architecture-text"><L10nText text={architecture} /></p>
         </div>
       </section>
     </div>
@@ -82,7 +78,7 @@ const {
 
   // Close on backdrop click
   const overlay = document.getElementById(id);
-  
+
   overlay?.addEventListener('click', (e) => {
     if (e.target === overlay) {
       if (window.closeModal) window.closeModal();
@@ -95,26 +91,38 @@ const {
     if (window.closeModal) window.closeModal();
   });
 
-  // Update translations on language change
+  // Re-apply translations on language change — the global translateAll() owns
+  // plain [data-i18n] elements, but the "Detailed Description" header carries
+  // an emoji prefix (📖) that translateAll's textContent assignment would wipe.
+  // This listener re-prepends the emoji after the global translator runs.
+  // It also localizes aria-labels via [data-i18n-aria] — kept separate from
+  // [data-i18n] so the global translator never sets textContent on the close
+  // button (which would overwrite the visible × icon).
   window.addEventListener('language-changed', () => {
     updateModalText();
   });
 
   function updateModalText() {
     const t = window.t || ((key) => key);
-    
+
     if (overlay) {
       overlay.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (key) {
           const translation = t(key);
-          if (key === 'projects.modal.objective') {
-            el.textContent = '📋 ' + translation;
-          } else if (key === 'projects.modal.detailedDescription') {
+          if (key === 'projects.modal.detailedDescription') {
             el.textContent = '📖 ' + translation;
           } else {
             el.textContent = translation;
           }
+        }
+      });
+
+      // Localize aria-labels without touching visible content.
+      overlay.querySelectorAll('[data-i18n-aria]').forEach(el => {
+        const key = el.getAttribute('data-i18n-aria');
+        if (key) {
+          el.setAttribute('aria-label', t(key));
         }
       });
     }
@@ -139,14 +147,18 @@ const {
   }
 
   .modal-content {
-    background: var(--bg-card, #1a1a2e);
-    border: 1px solid var(--glass-border, rgba(56, 249, 62, 0.2));
+    background: var(--bg-glass);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: 16px;
     max-width: 900px;
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
     position: relative;
   }
 
@@ -155,17 +167,17 @@ const {
   }
 
   .modal-content::-webkit-scrollbar-track {
-    background: var(--bg-deep, #0d0d1a);
+    background: var(--bg-deep);
     border-radius: 4px;
   }
 
   .modal-content::-webkit-scrollbar-thumb {
-    background: var(--monster-green, #38F93E);
+    background: var(--monster-green);
     border-radius: 4px;
   }
 
   .modal-content::-webkit-scrollbar-thumb:hover {
-    background: var(--monster-green, #38F93E);
+    background: var(--monster-green);
     opacity: 0.8;
   }
 
@@ -204,17 +216,17 @@ const {
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 2rem;
-    border-bottom: 1px solid var(--glass-border, rgba(56, 249, 62, 0.2));
+    border-bottom: 1px solid var(--glass-border);
     position: sticky;
     top: 0;
-    background: var(--bg-card, #1a1a2e);
+    background: var(--bg-secondary);
     border-radius: 16px 16px 0 0;
     z-index: 10;
   }
 
   .modal-header h2 {
     margin: 0;
-    color: var(--monster-green, #38F93E);
+    color: var(--monster-green);
     font-size: 1.5rem;
     flex: 1;
   }
@@ -222,7 +234,7 @@ const {
   .close-btn {
     background: transparent;
     border: none;
-    color: var(--text-primary, #ffffff);
+    color: var(--text-primary);
     font-size: 2rem;
     line-height: 1;
     width: 48px;
@@ -237,7 +249,7 @@ const {
 
   .close-btn:hover {
     background: rgba(56, 249, 62, 0.1);
-    color: var(--monster-green, #38F93E);
+    color: var(--monster-green);
   }
 
   .modal-body {
@@ -249,22 +261,15 @@ const {
   }
 
   .info-section h3 {
-    color: var(--monster-green, #38F93E);
+    color: var(--monster-green);
     font-size: 1.3rem;
     margin: 0 0 1rem 0;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--glass-border, rgba(56, 249, 62, 0.2));
+    border-bottom: 2px solid var(--glass-border);
   }
 
   .info-section:last-child {
     margin-bottom: 0;
-  }
-
-  .objective-text {
-    color: var(--text-primary, #ffffff);
-    font-size: 1rem;
-    line-height: 1.7;
-    margin: 0;
   }
 
   .subsection {
@@ -276,7 +281,7 @@ const {
   }
 
   .subsection h4 {
-    color: var(--monster-green, #38F93E);
+    color: var(--monster-green);
     font-size: 1.1rem;
     margin: 0 0 0.75rem 0;
     font-weight: 600;
@@ -292,7 +297,7 @@ const {
     position: relative;
     padding-left: 1.5rem;
     margin-bottom: 0.6rem;
-    color: var(--text-secondary, #a0a0a0);
+    color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.6;
   }
@@ -301,13 +306,13 @@ const {
     content: '•';
     position: absolute;
     left: 0;
-    color: var(--monster-green, #38F93E);
+    color: var(--monster-green);
     font-weight: 700;
     font-size: 1.1rem;
   }
 
   .architecture-text {
-    color: var(--text-secondary, #a0a0a0);
+    color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.7;
     margin: 0;

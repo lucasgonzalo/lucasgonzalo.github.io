@@ -33,14 +33,15 @@
       "inDevelopment": "En Desarrollo"
     },
     "modal": {
-      "objective": "Objetivo del Proyecto",
       "detailedDescription": "Descripción Detallada",
       "businessFeatures": "Funcionalidades de Negocio",
       "techStack": "Stack Tecnológico",
       "technicalFeatures": "Características Técnicas",
       "architecture": "Arquitectura",
       "close": "Cerrar Modal"
-    }
+    },
+    "features": "Características Destacadas",
+    "technologies": "Tecnologías"
   },
   "contact": {
     "title": "Contacto",
@@ -56,7 +57,11 @@
   "languageSwitcher": {
     "title": "Idioma"
   },
-  "googleTranslate": {
-    "title": "Traducción Automática"
+  "footer": {
+    "copyright": "Todos los derechos reservados."
+  },
+  "meta": {
+    "title": "Lucas GAM - Desarrollador de Software",
+    "description": "Lucas Abregú Maradona - Desarrollador Full-Stack Ruby on Rails con 4 años de experiencia construyendo aplicaciones web robustas"
   }
 }

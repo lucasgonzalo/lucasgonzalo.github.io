@@ -13,25 +13,6 @@
   </div>
 </section>
 
-<script>
-  window.addEventListener('language-changed', () => {
-    const t = window.t || ((key) => key);
-    
-    const title = document.querySelector('#about');
-    const paragraphs = document.querySelectorAll('.about-content p');
-    
-    if (title) {
-      const key = title.getAttribute('data-i18n');
-      if (key) title.textContent = t(key);
-    }
-    
-    paragraphs.forEach((p, index) => {
-      const key = p.getAttribute('data-i18n');
-      if (key) p.textContent = t(key);
-    });
-  });
-</script>
-
 <style>
 
   #about{

@@ -14,18 +14,6 @@
   </div>
 </section>
 
-<script>
-  window.addEventListener('language-changed', () => {
-    const t = window.t || ((key) => key);
-    document.querySelectorAll('.hero [data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (key) {
-        el.textContent = t(key);
-      }
-    });
-  });
-</script>
-
 <style>
   section {
     padding: var(--section-spacing) 0;

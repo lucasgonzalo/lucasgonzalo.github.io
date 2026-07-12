@@ -27,20 +27,14 @@
 </section>
 
 <script>
+  // Placeholder text isn't a [data-i18n] element, so it is updated here.
+  // The global translateAll() owns all [data-i18n] chrome translation.
   window.addEventListener('language-changed', () => {
     const t = window.t || ((key) => key);
-    
-    document.querySelectorAll('.glass [data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (key) {
-        el.textContent = t(key);
-      }
-    });
-    
-    // Update placeholders
+
     const emailInput = document.querySelector('input[name="email"]');
     const messageInput = document.querySelector('textarea[name="message"]');
-    
+
     if (emailInput) emailInput.placeholder = t('contact.emailPlaceholder');
     if (messageInput) messageInput.placeholder = t('contact.messagePlaceholder');
   });

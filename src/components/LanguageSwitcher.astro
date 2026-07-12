@@ -47,8 +47,11 @@
     { code: 'es', name: 'Español', flag: '🇪🇸' }
   ];
 
-  // Get current language
+  // Get current language from the runtime (single source of truth)
   function getCurrentLang() {
+    if (typeof window !== 'undefined' && window.getLanguage) {
+      return window.getLanguage();
+    }
     try {
       return localStorage.getItem('language') || 'en';
     } catch (e) {
@@ -115,27 +118,18 @@
       langOptions[i].addEventListener('click', function(e) {
         e.stopPropagation();
         var langCode = this.getAttribute('data-lang');
-        
-        // Save new language
-        try {
-          localStorage.setItem('language', langCode);
-          document.documentElement.lang = langCode;
-          
-          // Dispatch custom event
-          window.dispatchEvent(new CustomEvent('language-changed', { 
-            detail: { language: langCode } 
-          }));
-        } catch (err) {
-          console.error('Error saving language:', err);
+
+        // Delegate to the runtime: it persists, sets <html lang>, translates
+        // all chrome, and dispatches language-changed (which updateLanguageUI
+        // listens for). No duplicated localStorage/lang/dispatch logic here.
+        if (window.setLanguage) {
+          window.setLanguage(langCode);
         }
-        
+
         // Close dropdown
         if (dropdown) {
           dropdown.style.display = 'none';
         }
-        
-        // Update UI
-        updateLanguageUI();
       });
     }
     
@@ -156,6 +150,15 @@
         dropdown.style.display = 'none';
       }
     });
+
+    // Sync the switcher UI with the runtime: any language change (init-dispatch
+    // on load, or a user toggle via window.setLanguage) updates the flag, name,
+    // and active option shown here.
+    window.addEventListener('language-changed', updateLanguageUI);
+
+    // Render the current language now, in case the runtime's init-dispatch
+    // already fired before this listener was attached.
+    updateLanguageUI();
   }
   
   // Setup on DOM content loaded

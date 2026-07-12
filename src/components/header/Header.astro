@@ -15,37 +15,10 @@ import LanguageSwitcher from '../LanguageSwitcher.astro';
         <li>
           <LanguageSwitcher />
         </li>
-        <li>
-          <button id="translateToggle" class="btn-translate-icon">
-            <i class="fas fa-globe"></i>
-          </button>
-          <div id="googleTranslateDropdown" class="translate-dropdown hidden">
-            <div class="translate-header">
-              <span data-i18n="googleTranslate.title">Auto Translate</span>
-              <button class="btn-close-translate">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-            <div id="google_translate_element"></div>
-          </div>
-        </li>
       </ul>
     </nav>
   </div>
 </header>
-
-<script>
-  // Update nav items on language change
-  window.addEventListener('language-changed', () => {
-    const t = window.t || ((key) => key);
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (key) {
-        el.textContent = t(key);
-      }
-    });
-  });
-</script>
 
 <style>
   header {
@@ -151,85 +124,6 @@ import LanguageSwitcher from '../LanguageSwitcher.astro';
     width: 100%;
   }
 
-  .btn-translate-icon {
-    background: transparent;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .btn-translate-icon i {
-    font-size: 1.3rem;
-    color: var(--monster-green);
-    transition: transform 0.5s ease;
-  }
-
-  .btn-translate-icon:hover i {
-    transform: rotate(360deg);
-    filter: drop-shadow(0 0 10px var(--monster-green));
-  }
-
-  .translate-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 0.5rem;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    padding: 1rem;
-    min-width: 200px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    z-index: 1001;
-  }
-
-  .translate-dropdown.hidden {
-    display: none;
-  }
-
-  .translate-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-  }
-
-  .btn-close-translate {
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 0.25rem;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-close-translate:hover {
-    color: var(--monster-green);
-  }
-
-  #google_translate_element select {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    color: var(--text-primary);
-    padding: 0.5rem;
-    border-radius: 8px;
-    width: 100%;
-    margin-top: 0.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  #google_translate_element select:hover {
-    border-color: var(--monster-green);
-    box-shadow: 0 0 15px var(--monster-glow);
-  }
-
   @media (max-width: 992px) {
     nav ul {
       gap: 1.5rem;
@@ -253,31 +147,3 @@ import LanguageSwitcher from '../LanguageSwitcher.astro';
   }
 </style>
 
-<script>
-  // Google Translate dropdown toggle
-  const translateToggle = document.getElementById('translateToggle');
-  const translateDropdown = document.getElementById('googleTranslateDropdown');
-  const btnCloseTranslate = document.querySelector('.btn-close-translate');
-
-  if (translateToggle && translateDropdown && btnCloseTranslate) {
-    translateToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      translateDropdown.classList.toggle('hidden');
-    });
-
-    btnCloseTranslate.addEventListener('click', (e) => {
-      e.stopPropagation();
-      translateDropdown.classList.add('hidden');
-    });
-  }
-
-  // Close translate dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (translateDropdown && e.target) {
-      const target = e.target as Element;
-      if (!target.closest('#translateToggle') && !target.closest('#googleTranslateDropdown')) {
-        translateDropdown.classList.add('hidden');
-      }
-    }
-  });
-</script>
